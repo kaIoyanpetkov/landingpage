@@ -1,0 +1,1025 @@
+/* =============================================================
+   RESET
+   ============================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background: #323232;
+    color: #ffffff;
+}
+
+
+/* =============================================================
+   PAGE
+   ============================================================= */
+
+.page {
+    position: relative;
+    width: 100%;
+    min-height: 2010px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   FOND VIDÉO — HALF LOOP
+   ========================================================= */
+
+.background-video {
+
+    position: absolute;
+
+    top: -3px;
+    left: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    object-fit: cover;
+    object-position: top center;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+}
+
+/* =============================================================
+   CONTENU
+   ============================================================= */
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =============================================================
+   HEADER
+   ============================================================= */
+
+.hero-header {
+    text-align: center;
+    padding-top: 40px;
+    letter-spacing: -1px;
+}
+
+.hero-header h1 {
+    margin: 0;
+
+    font-size: 54px;
+    line-height: 1;
+
+    font-weight: 500;
+
+    text-shadow:
+        0 0 5px rgba(149, 253, 253, 0.7),
+        0 0 20px rgba(124, 255, 255, 0.5),
+        0 0 40px rgba(167, 255, 252, 0.3),
+        0 0 30px rgba(0, 11, 28, 0.25);
+}
+
+.subtitle {
+    margin: 50px 20px 0;
+
+    font-size: 47px;
+    line-height: 1.05;
+
+    font-weight: 400;
+
+    text-shadow:
+        0 0 5px rgba(149, 253, 253, 0.8),
+        0 0 20px rgba(124, 255, 255, 0.6),
+        0 0 40px rgba(167, 255, 252, 0.4),
+        0 0 30px rgba(0, 11, 28, 0.33);
+}
+
+
+/* =============================================================
+   SECTION PRÉSENTATION
+   ============================================================= */
+
+.presentation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+
+/* =============================================================
+   WRAPPER VIDÉO PRINCIPALE
+   ============================================================= */
+
+.main-video-wrapper {
+    position: relative;
+
+    width: min(695px, 67vw);
+
+    aspect-ratio: 16 / 9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    isolation: isolate;
+
+    overflow: visible;
+}
+
+
+/* =============================================================
+   PARTICULES DU HAUT — CROSSFADE
+   ============================================================= */
+
+.particles-loop-a,
+.particles-loop-b {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    width: 170%;
+
+    height: auto;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: 0;
+
+    transition: opacity 1s linear;
+
+}
+
+
+/* =============================================================
+   MASQUAGE DES PARTICULES
+   ============================================================= */
+
+.main-video-wrapper.particles-hidden .particles-loop-a,
+.main-video-wrapper.particles-hidden .particles-loop-b {
+    opacity: 0 !important;
+}
+
+
+/* =============================================================
+   CARTE VIDÉO PRINCIPALE
+   ============================================================= */
+
+.video-card {
+    position: relative;
+}
+
+.video-card-main {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 25.5px;
+
+    overflow: visible;
+
+    z-index: 2;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+
+    filter:
+        drop-shadow(0 0 10px rgba(149, 253, 249, 0.4))
+        drop-shadow(0 0 30px rgba(124, 255, 255, 0.2))
+        drop-shadow(0 0 60px rgba(167, 255, 252, 0.1));
+}
+
+.video-card-main:hover {
+    transform: scale(1.1);
+
+    filter:
+        drop-shadow(0 0 12px rgba(149, 253, 249, 0.7))
+        drop-shadow(0 0 35px rgba(124, 255, 255, 0.45))
+        drop-shadow(0 0 70px rgba(167, 255, 252, 0.25));
+}
+
+
+/* =============================================================
+   VIDÉO PRINCIPALE
+   ============================================================= */
+
+.main-video {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+
+    background: #000000;
+
+    z-index: 2;
+}
+
+/* =============================================================
+   ZOOM DE LA VIDÉO PRINCIPALE PENDANT LA LECTURE
+   ============================================================= */
+
+.video-card-main.video-playing {
+    transform: scale(1.1);
+}
+/* =============================================================
+   EDGE SWEEP
+   ============================================================= */
+
+.edge-sweep-video {
+    position: absolute;
+
+    width: 122%;
+    height: 122%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: fill;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    opacity: 1;
+
+    transition: opacity 0.5s ease;
+}
+
+
+/* =============================================================
+   GLOW
+   ============================================================= */
+
+.video-glow {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    filter: blur(7px);
+}
+
+
+/* =============================================================
+   BOUTON CONTACT
+   ============================================================= */
+
+.contact-button {
+    position: relative;
+
+    width: 350px;
+    height: 83px;
+
+    margin-top: 70px;
+
+    border-radius: 23px;
+
+    overflow: visible;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 44px;
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 0 10px rgba(149, 253, 253, 1),
+        0 0 20px rgba(124, 255, 255, 0.8),
+        0 0 40px rgba(167, 255, 252, 0.5),
+        0 0 10px rgba(0, 11, 28, 0.3);
+
+    filter:
+        drop-shadow(0 0 10px rgba(149, 253, 249, 0.01))
+        drop-shadow(0 0 30px rgba(124, 255, 255, 0.01))
+        drop-shadow(0 0 60px rgba(167, 255, 252, 0.01));
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.contact-button:hover {
+    transform: scale(1.1);
+
+    filter:
+        drop-shadow(0 0 9px rgba(193, 255, 253, 0.7))
+        drop-shadow(0 0 25px rgba(168, 255, 255, 0.45))
+        drop-shadow(0 0 50px rgba(177, 255, 252, 0.25));
+}
+
+
+/* =============================================================
+   ANIMATION DU BOUTON
+   ============================================================= */
+
+.contact-animation {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 340%;
+    height: 320%;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: fill;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.contact-button-text {
+    position: relative;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =============================================================
+   RÉALISATIONS
+   ============================================================= */
+
+.trust-section {
+    text-align: center;
+
+    margin-top: 67px;
+
+    text-shadow:
+        0 0 10px rgb(181, 255, 255),
+        0 0 20px rgba(172, 255, 255, 0.7),
+        0 0 40px rgba(135, 255, 251, 0.5),
+        0 0 10px rgba(0, 11, 28, 0.3);
+}
+
+.trust-section h2,
+.testimonials-section h2 {
+    margin: 0;
+
+    font-size: 52px;
+    line-height: 1;
+
+    font-weight: 400;
+
+    letter-spacing: -0.65px;
+}
+
+
+/* =============================================================
+   REELS
+   ============================================================= */
+
+.reels-grid {
+    width: min(750px, 67vw);
+
+    margin: 67px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 80px;
+}
+
+.video-card-reel {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 9 / 16;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    display: block;
+
+    text-decoration: none;
+
+    filter:
+        drop-shadow(0 0 10px rgba(149, 253, 249, 0.4))
+        drop-shadow(0 0 30px rgba(124, 255, 255, 0.2))
+        drop-shadow(0 0 60px rgba(167, 255, 252, 0.1));
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.video-card-reel:hover {
+    transform: scale(1.08);
+
+    filter:
+        drop-shadow(0 0 12px rgba(149, 253, 249, 0.65))
+        drop-shadow(0 0 35px rgba(124, 255, 255, 0.4))
+        drop-shadow(0 0 70px rgba(167, 255, 252, 0.2));
+}
+
+.reel-video {
+    position: absolute;
+
+    width: 101%;
+    height: 101%;
+
+    left: -0.5%;
+    top: -0.5%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+
+    background: #000000;
+
+    z-index: 1;
+}
+
+
+/* =============================================================
+   AVIS CLIENTS
+   ============================================================= */
+
+.testimonials-section {
+    text-align: center;
+
+    margin-top: 73px;
+
+    letter-spacing: -0.75px;
+
+    text-shadow:
+        0 0 10px rgba(149, 253, 253, 0.7),
+        0 0 20px rgba(124, 255, 255, 0.5),
+        0 0 40px rgba(167, 255, 252, 0.3),
+        0 0 10px rgba(0, 11, 28, 0.3);
+}
+
+.testimonials-carousel {
+    position: relative;
+
+    width: min(700px, 75vw);
+
+    margin: 67px auto 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonials-box {
+    position: relative;
+
+    width: min(610px, 67vw);
+
+    aspect-ratio: 910 / 490;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    filter:
+        drop-shadow(0 0 10px rgba(149, 253, 249, 0.5))
+        drop-shadow(0 0 30px rgba(124, 255, 255, 0.3))
+        drop-shadow(0 0 60px rgba(167, 255, 252, 0.15));
+}
+
+.testimonial-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0;
+
+    transition: opacity 1s ease-in-out;
+
+    pointer-events: none;
+}
+
+.testimonial-image.active {
+    opacity: 1;
+}
+
+
+/* =============================================================
+   FLÈCHES
+   ============================================================= */
+
+.testimonial-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 42px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 70px;
+
+    font-weight: 300;
+
+    line-height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    opacity: 0.65;
+
+    filter:
+        drop-shadow(0 0 5px rgba(149, 253, 253, 0.8))
+        drop-shadow(0 0 20px rgba(124, 255, 255, 0.6))
+        drop-shadow(0 0 40px rgba(167, 255, 252, 0.4));
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.testimonial-arrow-left {
+    left: -10px;
+}
+
+.testimonial-arrow-right {
+    right: -10px;
+}
+
+.testimonial-arrow:hover {
+    opacity: 1;
+
+    transform: translateY(-50%) scale(1.12);
+}
+
+
+/* =============================================================
+   INDICATEURS
+   ============================================================= */
+
+.testimonial-dots {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 30px;
+}
+
+.testimonial-dot {
+    width: 18px;
+    height: 18px;
+
+    flex: 0 0 18px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    position: relative;
+
+    filter:
+        drop-shadow(0 0 5px rgba(149, 253, 253, 0.8))
+        drop-shadow(0 0 20px rgba(124, 255, 255, 0.6))
+        drop-shadow(0 0 40px rgba(167, 255, 252, 0.4));
+}
+
+.testimonial-dot::before {
+    content: "";
+
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+
+    top: 4px;
+    left: 4px;
+
+    border-radius: 50%;
+
+    border: 1px solid #ffffff;
+
+    background: transparent;
+
+    opacity: 0.75;
+
+    box-sizing: border-box;
+
+    transition:
+        background 0.25s ease,
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.testimonial-dot.active::before {
+    background: #ffffff;
+
+    opacity: 1;
+}
+
+.testimonial-dot:hover::before {
+    opacity: 1;
+
+    transform: scale(1.15);
+}
+
+
+/* =============================================================
+   BAS DE PAGE
+   ============================================================= */
+
+.bottom-section {
+    height: 171px;
+}
+
+
+/* =============================================================
+   ICÔNES FIXES
+   ============================================================= */
+
+.floating-contact-icons {
+    position: fixed;
+
+    top: 45px;
+    right: 45px;
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 20px;
+
+    z-index: 1000;
+}
+
+.floating-icon {
+    display: block;
+
+    width: 50px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.floating-icon img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 0 5px rgba(149, 253, 253, 0.6))
+        drop-shadow(0 0 20px rgba(124, 255, 255, 0.4))
+        drop-shadow(0 0 40px rgba(167, 255, 252, 0.25));
+}
+
+.floating-icon:hover {
+    transform: scale(1.08);
+}
+
+
+/* =============================================================
+   VAGUE ICÔNES
+   ============================================================= */
+
+.floating-icon.wave {
+    animation: contactWave 1s ease-out;
+}
+
+@keyframes contactWave {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-7px);
+    }
+
+    65% {
+        transform: translateY(1px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+/* =============================================================
+   MESSAGE — E-MAIL COPIÉ
+   ============================================================= */
+
+.email-copied-message {
+
+    position: absolute;
+
+    top: calc(100% + 12px);
+    right: -22px;
+
+    white-space: nowrap;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    color: #ffffff;
+
+    opacity: 0;
+
+    transform: translateY(-5px);
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 5px rgba(149, 253, 253, 0.8),
+        0 0 15px rgba(124, 255, 255, 0.6);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.email-copied-message.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* =============================================================
+   RESPONSIVE TABLETTE
+   ============================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero-header h1 {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 40px;
+    }
+
+    .main-video-wrapper {
+        width: calc(100vw - 48px);
+    }
+
+    .contact-button {
+        width: min(350px, calc(100vw - 80px));
+
+        font-size: 40px;
+        min-height: 85px;
+    }
+
+    .trust-section h2,
+    .testimonials-section h2 {
+        font-size: 48px;
+    }
+
+    .reels-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        width: min(500px, calc(100vw - 48px));
+
+        gap: 30px;
+    }
+
+}
+
+
+/* =============================================================
+   RESPONSIVE MOBILE
+   ============================================================= */
+
+@media (max-width: 600px) {
+
+    .page {
+        min-height: auto;
+    }
+
+    .hero-header {
+        padding-top: 45px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-header h1 {
+        font-size: clamp(40px, 11vw, 60px);
+    }
+
+    .subtitle {
+        margin-top: 28px;
+
+        font-size: clamp(30px, 8vw, 48px);
+    }
+
+    .presentation-section {
+        margin-top: 70px;
+    }
+
+    .main-video-wrapper {
+        width: calc(100vw - 40px);
+    }
+
+    .contact-button {
+        width: calc(100vw - 100px);
+
+        min-height: 80px;
+
+        margin-top: 70px;
+
+        border-radius: 20px;
+
+        font-size: clamp(28px, 7vw, 42px);
+    }
+
+    .trust-section {
+        margin-top: 70px;
+    }
+
+    .trust-section h2,
+    .testimonials-section h2 {
+        font-size: clamp(40px, 10vw, 55px);
+
+        padding: 0 20px;
+    }
+
+    .reels-grid {
+        width: min(270px, calc(100vw - 48px));
+
+        margin-top: 70px;
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .testimonials-section {
+        margin-top: 80px;
+    }
+
+    .testimonials-box {
+        width: calc(100vw - 40px);
+
+        min-height: 450px;
+
+        aspect-ratio: auto;
+
+        border-radius: 20px;
+    }
+
+    .bottom-section {
+        height: 100px;
+    }
+
+}
+
+/* =========================================================
+   PARTICULES DU FOND
+   ========================================================= */
+
+.background-particles-wrapper {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    /* Hauteur correspondant au ratio 1440 × 3000 */
+    aspect-ratio: 1440 / 3000;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   VIDÉOS
+   ========================================================= */
+
+.background-particles {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    transition: opacity 1s linear;
+}
+
+
+/* =========================================================
+   PREMIÈRE VIDÉO
+   ========================================================= */
+
+.background-particles-1 {
+
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   DEUXIÈME VIDÉO
+   ========================================================= */
+
+.background-particles-2 {
+
+    opacity: 0;
+    transform: scaleX(-1);
+}

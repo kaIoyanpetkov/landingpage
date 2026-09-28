@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kaloyan Petkov — Monteur vidéo & Motion Designer</title>
+
+    <!-- Police Raleway -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+    <!-- =========================================================
+         ICÔNES DE CONTACT FIXES
+         ========================================================= -->
+
+    <div class="floating-contact-icons">
+
+        <a  href="https://www.instagram.com/kaloyan.editor" 
+            
+            class="floating-icon" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram">
+            <img src="assets/icon_ig.png" alt="Instagram"
+    
+            >
+        </a>
+
+        <a  href="https://api.whatsapp.com/send?phone=33781300382" 
+            
+            class="floating-icon"  
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp">
+            <img src="assets/icon_whatsapp.png" alt="WhatsApp">
+        </a>
+        <a
+            href="mailto:kaloyan.petkov.contact@gmail.com"
+            class="floating-icon email-button"
+            aria-label="Copier l'adresse e-mail">
+            <img src="assets/icon_mail.png" alt="Email">
+        </a>
+
+<span class="email-copied-message">
+    E-mail copié !
+</span>
+
+    </div>
+
+
+    <!-- =========================================================
+         CONTENEUR PRINCIPAL
+         ========================================================= -->
+
+    <div class="page">
+
+
+<!-- =========================================================
+     FOND VIDÉO
+     ========================================================= -->
+
+<video
+    class="background-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+>   <!-- HEVC : navigateur compatible -->
+    <source
+        src="assets/light_videos/background_loop_HEVC.mp4"
+        type="video/mp4; codecs=hvc1"
+    >
+        <!-- H.264 : fallback -->
+    <source
+        src="assets/light_videos/background_loop_H264.mp4"
+        type="video/mp4"
+    >
+</video>
+    <!-- =========================================================
+     PARTICULES DU FOND
+     ========================================================= -->
+
+<div class="background-particles-wrapper">
+
+    <video
+        class="background-particles background-particles-1"
+        muted
+        playsinline
+        preload="auto"
+    >
+        <source
+            src="assets/background_particles.webm"
+            type="video/webm ; codecs=vp9"
+        >
+        <source
+        src="assets/light_videos/background_particles_Mac_HEVC_4k.mov"
+        type="video/quicktime ; codecs=hvc1"
+    >
+    </video>
+
+    <video
+        class="background-particles background-particles-2"
+        muted
+        playsinline
+        preload="auto"
+    >
+        <source
+            src="assets/background_particles.webm"
+            type="video/webm"
+        >
+    </video>
+
+</div>
+    
+        <!-- =====================================================
+             CONTENU
+             ====================================================== -->
+
+        <main>
+
+            <!-- =================================================
+                 HEADER
+                 ================================================== -->
+
+            <header class="hero-header">
+
+                <h1>Kaloyan Petkov</h1>
+
+                <p class="subtitle">
+                    Monteur vidéo &amp; Motion Designer
+                </p>
+
+            </header>
+
+
+            <!-- =================================================
+                 VIDÉO DE PRÉSENTATION
+                 ================================================== -->
+
+            <section class="presentation-section">
+
+                <!-- GROUPE VIDÉO PRINCIPALE -->
+
+                <div class="main-video-wrapper">
+
+                    <!-- PARTICULES — BOUCLE 1 -->
+
+                    <video class="particles-loop-a" muted playsinline preload="auto">
+                    <source src="assets/particles_loop.webm" type="video/webm">
+                    </video>
+
+
+                    <!-- PARTICULES — BOUCLE 2 -->
+
+                    <video class="particles-loop-b" muted playsinline preload="auto">
+                    <source src="assets/particles_loop.webm" type="video/webm">
+                    </video>
+
+
+                    <!-- CARTE VIDÉO PRINCIPALE -->
+
+                    <div class="video-card video-card-main">
+
+                        <!-- GLOW -->
+
+                        <div class="video-glow"></div>
+
+
+                        <!-- VIDÉO PRINCIPALE -->
+
+                        <video
+                            class="main-video"
+                            controls
+                            preload="metadata"
+                            poster="assets/miniature_presentation.jpg"
+                            playsinline
+                        >
+
+                        <source
+                            src="assets/light_videos/presentation_HEVC.mp4"
+                            type="video/mp4; codecs=hvc1"
+                        >
+                            <!-- H.264 : fallback -->
+                        <source
+                            src="assets/light_videos/presentation_H264.mp4"
+                            type="video/mp4"
+    >
+
+                            Votre navigateur ne prend pas en charge
+                            la lecture vidéo.
+
+                        </video>
+
+
+                        <!-- EDGE SWEEP -->
+
+                        <video
+                            class="edge-sweep-video"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="auto"
+                        >
+
+                            <source
+                                src="assets/edge_sweep_alpha.webm"
+                                type="video/webm"
+                            >
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     BOUTON CONTACT
+                     ================================================= -->
+
+                <a
+                    href="https://linktr.ee/kaloyan.petkov.contact?utm_source=qr_code"
+                    class="contact-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <video
+                        class="contact-animation"
+                        muted
+                        playsinline
+                        preload="auto"
+                    >
+
+                        <source
+                            src="assets/button_animation.webm"
+                            type="video/webm"
+                        >
+
+                    </video>
+
+
+                    <span class="contact-button-text">
+                        Contactez-moi !
+                    </span>
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 RÉALISATIONS
+                 ================================================= -->
+
+            <section class="trust-section">
+
+                <h2>Ils me font confiance...</h2>
+
+
+                <div class="reels-grid">
+
+                    <!-- REEL 1 -->
+
+                    <a
+                        href="https://www.instagram.com/reel/DQBfUXGjA60/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                        class="video-card video-card-reel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <div class="video-glow"></div>
+
+                        <video
+                            class="reel-video"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+
+                            <source
+                                src="assets/light_videos/reel_1_HEVC.mp4"
+                                type="video/mp4; codecs=hvc1"
+                            >
+                                <!-- H.264 : fallback -->
+                            <source
+                                src="assets/light_videos/reel_1_H264.mp4"
+                                type="video/mp4"
+                            >
+
+                        </video>
+
+                        <div class="edge-sweep"></div>
+
+                    </a>
+
+
+                    <!-- REEL 2 -->
+
+                    <a
+                        href="https://www.instagram.com/reels/DRo0-tNDSBx/"
+                        class="video-card video-card-reel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <div class="video-glow"></div>
+
+                        <video
+                            class="reel-video"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+
+                             <source
+                                src="assets/light_videos/reel_2_HEVC.mp4"
+                                type="video/mp4; codecs=hvc1"
+                            >
+                                <!-- H.264 : fallback -->
+                            <source
+                                src="assets/light_videos/reel_2_H264.mp4"
+                                type="video/mp4"
+                            >
+
+                        </video>
+
+                        <div class="edge-sweep"></div>
+
+                    </a>
+
+
+                    <!-- REEL 3 -->
+
+                    <a
+                        href="https://www.instagram.com/reels/DY9W0oTDvry/"
+                        class="video-card video-card-reel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <div class="video-glow"></div>
+
+                        <video
+                            class="reel-video"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+
+                             <source
+                                src="assets/light_videos/reel_3_HEVC.mp4"
+                                type="video/mp4; codecs=hvc1"
+                            >
+                                <!-- H.264 : fallback -->
+                            <source
+                                src="assets/light_videos/reel_3_H264.mp4"
+                                type="video/mp4"
+                            >
+
+                        </video>
+
+                        <div class="edge-sweep"></div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AVIS CLIENTS
+                 ================================================= -->
+
+            <section class="testimonials-section">
+
+                <h2>Leurs retours</h2>
+
+
+                <div class="testimonials-carousel">
+
+                    <button
+                        class="testimonial-arrow testimonial-arrow-left"
+                        type="button"
+                        aria-label="Avis précédent"
+                    >
+                        ‹
+                    </button>
+
+
+                    <div class="testimonials-box">
+
+                        <img
+                            class="testimonial-image active"
+                            src="assets/avis_1.jpg"
+                            alt="Avis client 1"
+                        >
+
+                        <img
+                            class="testimonial-image"
+                            src="assets/avis_2.jpg"
+                            alt="Avis client 2"
+                        >
+
+                        <img
+                            class="testimonial-image"
+                            src="assets/avis_3.jpg"
+                            alt="Avis client 3"
+                        >
+
+                        <img
+                            class="testimonial-image"
+                            src="assets/avis_4.jpg"
+                            alt="Avis client 4"
+                        >
+
+                        <img
+                            class="testimonial-image"
+                            src="assets/avis_5.jpg"
+                            alt="Avis client 5"
+                        >
+
+                        <img
+                            class="testimonial-image"
+                            src="assets/avis_6.jpg"
+                            alt="Avis client 6"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="testimonial-arrow testimonial-arrow-right"
+                        type="button"
+                        aria-label="Avis suivant"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <!-- INDICATEURS -->
+
+                <div
+                    class="testimonial-dots"
+                    aria-label="Navigation entre les avis"
+                >
+
+                    <button
+                        class="testimonial-dot active"
+                        type="button"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        type="button"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        type="button"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        type="button"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        type="button"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        type="button"
+                    ></button>
+
+                </div>
+
+            </section>
+
+
+            <section class="bottom-section"></section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
