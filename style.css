@@ -831,38 +831,78 @@ main {
    RESPONSIVE TABLETTE
    ============================================================= */
 
-@media (max-width: 1000px) {
+@media (min-width: 601px) and (max-width: 1000px) {
 
     .hero-header h1 {
         font-size: 48px;
     }
 
     .subtitle {
-        font-size: 40px;
+        font-size: 36px;
     }
 
     .main-video-wrapper {
-        width: calc(100vw - 48px);
+        width: calc(100vw - 200px);
     }
 
     .contact-button {
         width: min(350px, calc(100vw - 80px));
 
-        font-size: 40px;
+        font-size: 36px;
         min-height: 85px;
     }
 
     .trust-section h2,
     .testimonials-section h2 {
-        font-size: 48px;
+        font-size: 36px;
+    }
+        .testimonials-box {
+        width: calc(100vw - 300px);
+
+        min-height: 400px;
+
+        aspect-ratio: auto;
+
+        border-radius: 20px;
+    }
+        .testimonial-arrow-left {
+    left: -25px;
     }
 
-    .reels-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .testimonial-arrow-right {
+        right: -25px;
+    }
+  .reels-grid {
+    grid-template-columns: repeat(2, 1fr);
 
-        width: min(500px, calc(100vw - 48px));
+    width: min(500px, calc(100vw - 48px));
 
-        gap: 30px;
+    gap: 30px;
+}
+
+.reels-grid .video-card-reel:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 30px) / 2);
+    margin-top: 10px;   
+}
+    
+    .floating-contact-icons {
+        top: 50%;
+        right: 14px;
+
+        transform: translateY(-50%);
+
+        flex-direction: column;
+
+        gap: 32px;
+
+        align-items: center;
+    }
+
+    .floating-icon {
+        width: 36px;
+        height: 31px;
     }
 
 }
@@ -885,13 +925,14 @@ main {
     }
 
     .hero-header h1 {
+        margin-top: 10px;
         font-size: clamp(40px, 11vw, 60px);
     }
 
     .subtitle {
-        margin-top: 28px;
+        margin-top: 50px;
 
-        font-size: clamp(30px, 8vw, 48px);
+        font-size: clamp(25px, 12vw, 29px);
     }
 
     .presentation-section {
@@ -899,11 +940,11 @@ main {
     }
 
     .main-video-wrapper {
-        width: calc(100vw - 40px);
+        width: calc(100vw - 140px);
     }
 
     .contact-button {
-        width: calc(100vw - 100px);
+        width: calc(100vw - 260px);
 
         min-height: 80px;
 
@@ -911,16 +952,16 @@ main {
 
         border-radius: 20px;
 
-        font-size: clamp(28px, 7vw, 42px);
+        font-size: clamp(22px, 7vw, 32px);
     }
 
     .trust-section {
         margin-top: 70px;
     }
-
+    
     .trust-section h2,
     .testimonials-section h2 {
-        font-size: clamp(40px, 10vw, 55px);
+        font-size: clamp(25px, 12vw, 36px);
 
         padding: 0 20px;
     }
@@ -934,15 +975,21 @@ main {
 
         gap: 50px;
     }
-
+    
     .testimonials-section {
         margin-top: 80px;
     }
+    .testimonial-arrow-left {
+    left: 0px;
+    }
 
+    .testimonial-arrow-right {
+        right: 0px;
+    }
     .testimonials-box {
-        width: calc(100vw - 40px);
+        width: calc(100vw - 250px);
 
-        min-height: 450px;
+        min-height: 400px;
 
         aspect-ratio: auto;
 
@@ -952,7 +999,23 @@ main {
     .bottom-section {
         height: 100px;
     }
+    .floating-contact-icons {
+            top: 50%;
+            right: 10px;
 
+            transform: translateY(-50%);
+
+            flex-direction: column;
+
+            gap: 32px;
+
+            align-items: center;
+        }
+
+        .floating-icon {
+            width: 31.5px;
+            height: 27px;
+        }
 }
 
 /* =========================================================
@@ -1023,3 +1086,4 @@ main {
     opacity: 0;
     transform: scaleX(-1);
 }
+

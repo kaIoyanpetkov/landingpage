@@ -1,3 +1,4 @@
+
 /* =============================================================
    BOUTON CONTACT
    ============================================================= */
@@ -221,6 +222,7 @@ setTimeout(() => {
 
 }, 5000);
 
+
 /* =============================================================
    BOUTON EMAIL
    ============================================================= */
@@ -350,6 +352,7 @@ if (emailButton) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
     /* =========================================================
        RÉFÉRENCES VIDÉOS
        ========================================================= */
@@ -387,10 +390,8 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================= */
 
     const PARTICLES_DURATION = 7000;
-    const PARTICLES_CROSSFADE = 1000;
 
-    const REELS_TRIGGER_DISTANCE = 1100;
-    const BACKGROUND_PARTICLES_TRIGGER_DISTANCE = 1300;
+    const PARTICLES_CROSSFADE = 1000;
 
     const BACKGROUND_STOP_TIME = 5;
 
@@ -400,13 +401,15 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================= */
 
     if (!mainVideo) {
+
         return;
+
     }
 
 
     /* =========================================================
        1 — PARTICULES DU HAUT
-       
+
        A et B utilisent la même vidéo source.
        Une seule est visible à la fois, avec crossfade
        sur la dernière seconde.
@@ -427,255 +430,265 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function resetTopParticlesVideo(video) {
 
-    if (!video) {
-        return;
-    }
+        if (!video) {
 
-    video.pause();
-    video.currentTime = 0;
-    video.style.opacity = "0";
-}
-
-
-function stopTopParticles() {
-
-    topParticlesRunning = false;
-
-    clearTimeout(topParticlesTimer);
-    clearTimeout(topParticlesStopTimer);
-
-    topParticlesTimer = null;
-    topParticlesStopTimer = null;
-
-
-    /*
-     * IMPORTANT :
-     *
-     * On ne pause PAS immédiatement les vidéos.
-     * On leur laisse 1 seconde pour disparaître.
-     *
-     * Cela évite le saut d'image visible lorsque
-     * currentTime est remis à zéro pendant le fondu.
-     */
-
-    if (particlesLoopA) {
-        particlesLoopA.style.opacity = "0";
-    }
-
-    if (particlesLoopB) {
-        particlesLoopB.style.opacity = "0";
-    }
-
-
-    /*
-     * Une fois que les particules sont totalement
-     * invisibles, seulement à ce moment-là :
-     *
-     * - pause
-     * - retour à 0
-     */
-
-    topParticlesStopTimer =
-        setTimeout(() => {
-
-            resetTopParticlesVideo(
-                particlesLoopA
-            );
-
-            resetTopParticlesVideo(
-                particlesLoopB
-            );
-
-            topParticlesStopTimer = null;
-
-        }, PARTICLES_CROSSFADE);
-}
-
-
-function startTopParticles() {
-
-    if (
-        !particlesLoopA ||
-        !particlesLoopB
-    ) {
-        return;
-    }
-
-
-    /*
-     * Si une disparition progressive est encore
-     * en cours, on l'annule immédiatement.
-     */
-
-    clearTimeout(topParticlesTimer);
-    clearTimeout(topParticlesStopTimer);
-
-    topParticlesTimer = null;
-    topParticlesStopTimer = null;
-
-    topParticlesRunning = true;
-
-
-    /*
-     * Maintenant que les vidéos sont invisibles,
-     * il est possible de les remettre à zéro
-     * sans provoquer de saut visible.
-     */
-
-    particlesLoopA.pause();
-    particlesLoopB.pause();
-
-    particlesLoopA.currentTime = 0;
-    particlesLoopB.currentTime = 0;
-
-
-    /*
-     * A devient la vidéo active.
-     */
-
-    particlesLoopA.style.opacity = "1";
-    particlesLoopB.style.opacity = "0";
-
-    topParticlesActive =
-        particlesLoopA;
-
-    topParticlesInactive =
-        particlesLoopB;
-
-
-    /*
-     * Lecture de A.
-     */
-
-    topParticlesActive
-        .play()
-        .catch(() => {});
-
-
-    /*
-     * Premier crossfade après 6 secondes.
-     */
-
-    topParticlesTimer =
-        setTimeout(
-            crossfadeTopParticles,
-            PARTICLES_DURATION -
-            PARTICLES_CROSSFADE
-        );
-}/* =========================================================
-   CROSSFADE PARTICULES DU HAUT
-   ========================================================= */
-
-function crossfadeTopParticles() {
-
-    if (
-        !topParticlesRunning ||
-        !topParticlesActive ||
-        !topParticlesInactive
-    ) {
-        return;
-    }
-
-
-    const current =
-        topParticlesActive;
-
-    const next =
-        topParticlesInactive;
-
-
-    /*
-     * Prépare la prochaine vidéo.
-     */
-
-    next.pause();
-
-    next.currentTime = 0;
-
-    next.style.opacity = "0";
-
-
-    /*
-     * La prochaine vidéo commence à 0 s
-     * pendant que l'actuelle termine son cycle.
-     */
-
-    next
-        .play()
-        .catch(() => {});
-
-
-    /*
-     * Début du crossfade.
-     */
-
-    requestAnimationFrame(() => {
-
-        if (!topParticlesRunning) {
             return;
+
         }
 
-        current.style.opacity = "0";
+        video.pause();
 
-        next.style.opacity = "1";
-    });
+        video.currentTime = 0;
+
+        video.style.opacity = "0";
+
+    }
 
 
-    /*
-     * Après 1 seconde, l'ancienne vidéo est
-     * totalement invisible.
-     *
-     * On peut alors la mettre en pause et la
-     * remettre à 0 sans aucun à-coup visible.
-     */
+    function stopTopParticles() {
 
-    clearTimeout(topParticlesStopTimer);
+        topParticlesRunning = false;
 
-    topParticlesStopTimer =
-        setTimeout(() => {
+        clearTimeout(topParticlesTimer);
 
-            current.pause();
+        clearTimeout(topParticlesStopTimer);
 
-            current.currentTime = 0;
+        topParticlesTimer = null;
+
+        topParticlesStopTimer = null;
+
+
+        /*
+         * Les deux vidéos deviennent immédiatement
+         * invisibles.
+         */
+
+        if (particlesLoopA) {
+
+            particlesLoopA.style.opacity = "0";
+
+        }
+
+        if (particlesLoopB) {
+
+            particlesLoopB.style.opacity = "0";
+
+        }
+
+
+        /*
+         * On attend la fin du fondu avant de
+         * remettre les vidéos à zéro.
+         */
+
+        topParticlesStopTimer =
+            setTimeout(() => {
+
+                resetTopParticlesVideo(
+                    particlesLoopA
+                );
+
+                resetTopParticlesVideo(
+                    particlesLoopB
+                );
+
+                topParticlesStopTimer = null;
+
+            }, PARTICLES_CROSSFADE);
+
+    }
+
+
+    function startTopParticles() {
+
+        if (
+            !particlesLoopA ||
+            !particlesLoopB
+        ) {
+
+            return;
+
+        }
+
+
+        clearTimeout(topParticlesTimer);
+
+        clearTimeout(topParticlesStopTimer);
+
+        topParticlesTimer = null;
+
+        topParticlesStopTimer = null;
+
+        topParticlesRunning = true;
+
+
+        /*
+         * Les deux vidéos sont invisibles à ce moment.
+         * On peut donc les remettre à zéro.
+         */
+
+        particlesLoopA.pause();
+
+        particlesLoopB.pause();
+
+        particlesLoopA.currentTime = 0;
+
+        particlesLoopB.currentTime = 0;
+
+
+        /*
+         * A devient la vidéo active.
+         */
+
+        particlesLoopA.style.opacity = "1";
+
+        particlesLoopB.style.opacity = "0";
+
+        topParticlesActive =
+            particlesLoopA;
+
+        topParticlesInactive =
+            particlesLoopB;
+
+
+        /*
+         * Lecture de A.
+         */
+
+        topParticlesActive
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Premier crossfade après 6 secondes.
+         */
+
+        topParticlesTimer =
+            setTimeout(
+                crossfadeTopParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
+    }
+
+
+    /* =========================================================
+       CROSSFADE PARTICULES DU HAUT
+       ========================================================= */
+
+    function crossfadeTopParticles() {
+
+        if (
+            !topParticlesRunning ||
+            !topParticlesActive ||
+            !topParticlesInactive
+        ) {
+
+            return;
+
+        }
+
+
+        const current =
+            topParticlesActive;
+
+        const next =
+            topParticlesInactive;
+
+
+        /*
+         * Prépare la prochaine vidéo.
+         */
+
+        next.pause();
+
+        next.currentTime = 0;
+
+        next.style.opacity = "0";
+
+
+        /*
+         * La prochaine vidéo démarre.
+         */
+
+        next
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Début du crossfade.
+         */
+
+        requestAnimationFrame(() => {
+
+            if (!topParticlesRunning) {
+
+                return;
+
+            }
 
             current.style.opacity = "0";
 
-        }, PARTICLES_CROSSFADE);
+            next.style.opacity = "1";
+
+        });
 
 
-    /*
-     * Inversion des rôles.
-     */
+        /*
+         * Lorsque le crossfade est terminé,
+         * l'ancienne vidéo est arrêtée et remise à zéro.
+         */
 
-    topParticlesActive =
-        next;
+        clearTimeout(topParticlesStopTimer);
 
-    topParticlesInactive =
-        current;
+        topParticlesStopTimer =
+            setTimeout(() => {
+
+                current.pause();
+
+                current.currentTime = 0;
+
+                current.style.opacity = "0";
+
+            }, PARTICLES_CROSSFADE);
 
 
-    /*
-     * Nouveau cycle :
-     *
-     * 6 secondes de lecture
-     * + 1 seconde de crossfade
-     */
+        /*
+         * Inversion des rôles.
+         */
 
-    clearTimeout(topParticlesTimer);
+        topParticlesActive =
+            next;
 
-    topParticlesTimer =
-        setTimeout(
-            crossfadeTopParticles,
-            PARTICLES_DURATION -
-            PARTICLES_CROSSFADE
-        );
-}
+        topParticlesInactive =
+            current;
+
+
+        /*
+         * Nouveau cycle.
+         */
+
+        clearTimeout(topParticlesTimer);
+
+        topParticlesTimer =
+            setTimeout(
+                crossfadeTopParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
+    }
+
 
     /* =========================================================
        2 — PARTICULES DU BAS
-       
-       Même système de crossfade que les particules du haut,
-       mais leur lecture est contrôlée par le scroll.
+
+       Les particules du bas utilisent le même système
+       de crossfade, mais leur lecture est contrôlée
+       par leur visibilité dans le viewport.
        ========================================================= */
 
     let bottomParticlesActive =
@@ -693,305 +706,343 @@ function crossfadeTopParticles() {
 
     function pauseBottomParticlesVideo(video) {
 
-    if (!video) {
-        return;
-    }
+        if (!video) {
 
-    video.pause();
-}
+            return;
 
+        }
 
-/*
- * Arrêt du lazy playback.
- *
- * IMPORTANT :
- * aucune remise à zéro du currentTime.
- * aucune modification d'opacité.
- * aucun crossfade.
- *
- * On gèle simplement les deux vidéos dans leur état
- * actuel.
- */
+        video.pause();
 
-function stopBottomParticles() {
-
-    bottomParticlesRunning = false;
-
-    clearTimeout(bottomParticlesTimer);
-    clearTimeout(bottomParticlesStopTimer);
-
-    bottomParticlesTimer = null;
-    bottomParticlesStopTimer = null;
-
-
-    /*
-     * Les deux instances sont simplement mises en pause.
-     */
-
-    pauseBottomParticlesVideo(
-        backgroundParticles1
-    );
-
-    pauseBottomParticlesVideo(
-        backgroundParticles2
-    );
-}
-
-
-/*
- * Reprise du lazy playback.
- *
- * Les vidéos reprennent exactement à leur
- * currentTime précédent.
- */
-
-function startBottomParticles() {
-
-    if (
-        !backgroundParticles1 ||
-        !backgroundParticles2
-    ) {
-        return;
     }
 
 
-    if (bottomParticlesRunning) {
-        return;
+    /*
+     * Arrêt du lazy playback.
+
+     * IMPORTANT :
+     * aucune remise à zéro du currentTime.
+     * aucune modification d'opacité.
+     * aucun nouveau crossfade.
+
+     * On gèle simplement les deux vidéos
+     * dans leur état actuel.
+     */
+
+    function stopBottomParticles() {
+
+        bottomParticlesRunning = false;
+
+        clearTimeout(bottomParticlesTimer);
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesTimer = null;
+
+        bottomParticlesStopTimer = null;
+
+
+        pauseBottomParticlesVideo(
+            backgroundParticles1
+        );
+
+        pauseBottomParticlesVideo(
+            backgroundParticles2
+        );
+
     }
 
 
-    bottomParticlesRunning = true;
-
-
-    clearTimeout(bottomParticlesTimer);
-    clearTimeout(bottomParticlesStopTimer);
-
-    bottomParticlesTimer = null;
-    bottomParticlesStopTimer = null;
-
-
     /*
-     * Reprise de la vidéo actuellement active.
-     *
-     * AUCUN currentTime = 0.
+     * Reprise du lazy playback.
+
+     * Les vidéos reprennent exactement à leur
+     * currentTime précédent.
      */
 
-    bottomParticlesActive
-        .play()
-        .catch(() => {});
+    function startBottomParticles() {
+
+        if (
+            !backgroundParticles1 ||
+            !backgroundParticles2
+        ) {
+
+            return;
+
+        }
 
 
-    /*
-     * Si la deuxième vidéo était déjà en train
-     * de participer à un crossfade lorsque le
-     * lazy playback s'est déclenché, elle reprend
-     * également là où elle était.
-     */
+        if (bottomParticlesRunning) {
 
-    if (
-        bottomParticlesInactive &&
-        bottomParticlesInactive.currentTime > 0
-    ) {
+            return;
 
-        bottomParticlesInactive
+        }
+
+
+        bottomParticlesRunning = true;
+
+
+        clearTimeout(bottomParticlesTimer);
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesTimer = null;
+
+        bottomParticlesStopTimer = null;
+
+
+        /*
+         * Reprise de la vidéo actuellement active.
+
+         * Aucun currentTime = 0.
+         */
+
+        bottomParticlesActive
             .play()
             .catch(() => {});
+
+
+        /*
+         * Si la deuxième vidéo participait déjà
+         * à un crossfade, elle reprend également.
+         */
+
+        if (
+            bottomParticlesInactive &&
+            bottomParticlesInactive.currentTime > 0
+        ) {
+
+            bottomParticlesInactive
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        /*
+         * Recalcul du temps restant avant
+         * le prochain crossfade.
+         */
+
+        const remainingTime =
+            Math.max(
+                0,
+                (
+                    PARTICLES_DURATION -
+                    PARTICLES_CROSSFADE
+                ) -
+                (
+                    bottomParticlesActive.currentTime *
+                    1000
+                )
+            );
+
+
+        bottomParticlesTimer =
+            setTimeout(
+                crossfadeBottomParticles,
+                remainingTime
+            );
+
     }
-
-
-    /*
-     * On recalcule le temps restant avant le
-     * prochain crossfade à partir du currentTime
-     * réel de la vidéo active.
-     */
-
-    const remainingTime =
-        Math.max(
-            0,
-            (
-                PARTICLES_DURATION -
-                PARTICLES_CROSSFADE
-            ) -
-            (
-                bottomParticlesActive.currentTime *
-                1000
-            )
-        );
-
-
-    bottomParticlesTimer =
-        setTimeout(
-            crossfadeBottomParticles,
-            remainingTime
-        );
-}
 
 
     function crossfadeBottomParticles() {
 
-    if (
-        !bottomParticlesRunning ||
-        !bottomParticlesActive ||
-        !bottomParticlesInactive
-    ) {
-        return;
-    }
+        if (
+            !bottomParticlesRunning ||
+            !bottomParticlesActive ||
+            !bottomParticlesInactive
+        ) {
 
-
-    const current =
-        bottomParticlesActive;
-
-    const next =
-        bottomParticlesInactive;
-
-
-    /*
-     * Préparation de la prochaine vidéo.
-     *
-     * On la remet au début uniquement ici,
-     * au moment d'un véritable nouveau crossfade.
-     *
-     * Ce n'est PAS exécuté lors du lazy pause.
-     */
-
-    next.pause();
-
-    next.currentTime = 0;
-
-    next.style.opacity = "0";
-
-
-    /*
-     * La prochaine vidéo démarre.
-     */
-
-    next
-        .play()
-        .catch(() => {});
-
-
-    /*
-     * Crossfade sur 1 seconde.
-     */
-
-    requestAnimationFrame(() => {
-
-        if (!bottomParticlesRunning) {
             return;
+
         }
 
-        current.style.opacity = "0";
 
-        next.style.opacity = "1";
-    });
+        const current =
+            bottomParticlesActive;
+
+        const next =
+            bottomParticlesInactive;
 
 
-    /*
-     * Lorsque le crossfade est terminé,
-     * l'ancienne vidéo peut être arrêtée et
-     * remise à zéro.
-     *
-     * Elle est invisible à ce moment-là.
-     */
+        /*
+         * Prépare la prochaine vidéo.
+         */
 
-    clearTimeout(bottomParticlesStopTimer);
+        next.pause();
 
-    bottomParticlesStopTimer =
-        setTimeout(() => {
+        next.currentTime = 0;
 
-            current.pause();
+        next.style.opacity = "0";
 
-            current.currentTime = 0;
+
+        /*
+         * La prochaine vidéo démarre.
+         */
+
+        next
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Crossfade.
+         */
+
+        requestAnimationFrame(() => {
+
+            if (!bottomParticlesRunning) {
+
+                return;
+
+            }
 
             current.style.opacity = "0";
 
-        }, PARTICLES_CROSSFADE);
-
-
-    /*
-     * Inversion des rôles.
-     */
-
-    bottomParticlesActive =
-        next;
-
-    bottomParticlesInactive =
-        current;
-
-
-    /*
-     * Nouveau cycle.
-     */
-
-    clearTimeout(bottomParticlesTimer);
-
-    bottomParticlesTimer =
-        setTimeout(
-            crossfadeBottomParticles,
-            PARTICLES_DURATION -
-            PARTICLES_CROSSFADE
-        );
-}
-
-
-    /* =========================================================
-       3 — LAZY PLAYBACK DES REELS
-       
-       Les reels restent en pause tant que la distance
-       avec le bas de la page est supérieure à 1080 px.
-       ========================================================= */
-
-    let reelsArePlaying = false;
-
-
-    function updateReelsPlayback() {
-
-        const distanceFromBottom =
-            document.documentElement.scrollHeight -
-            (
-                window.scrollY +
-                window.innerHeight
-            );
-
-
-        const shouldPlay =
-            distanceFromBottom <=
-            REELS_TRIGGER_DISTANCE;
-
-
-        if (shouldPlay === reelsArePlaying) {
-            return;
-        }
-
-
-        reelsArePlaying = shouldPlay;
-
-
-        reelVideos.forEach(video => {
-
-            if (shouldPlay) {
-
-                video
-                    .play()
-                    .catch(() => {});
-
-            } else {
-
-                video.pause();
-            }
+            next.style.opacity = "1";
 
         });
+
+
+        /*
+         * Une fois le crossfade terminé,
+         * l'ancienne vidéo est arrêtée et remise à zéro.
+         */
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesStopTimer =
+            setTimeout(() => {
+
+                current.pause();
+
+                current.currentTime = 0;
+
+                current.style.opacity = "0";
+
+            }, PARTICLES_CROSSFADE);
+
+
+        /*
+         * Inversion des rôles.
+         */
+
+        bottomParticlesActive =
+            next;
+
+        bottomParticlesInactive =
+            current;
+
+
+        /*
+         * Nouveau cycle.
+         */
+
+        clearTimeout(bottomParticlesTimer);
+
+        bottomParticlesTimer =
+            setTimeout(
+                crossfadeBottomParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
     }
 
 
     /* =========================================================
-       4 — LAZY PLAYBACK DES PARTICULES DU BAS
-       
-       Au-dessus de 1300 px du bas :
-       arrêt complet.
+       3 — DÉTECTION DE VISIBILITÉ
 
-       À 1300 px ou moins :
-       lecture + crossfade.
+       Une vidéo est considérée comme visible dès qu'une
+       partie de sa surface se trouve dans le viewport.
+
+       Il n'y a plus aucune distance fixe en pixels.
+       ========================================================= */
+
+    function isVideoVisibleInViewport(video) {
+
+        if (!video) {
+
+            return false;
+
+        }
+
+
+        const rect =
+            video.getBoundingClientRect();
+
+
+        return (
+            rect.bottom > 0 &&
+            rect.top < window.innerHeight
+        );
+
+    }
+
+
+    /* =========================================================
+       4 — LAZY PLAYBACK DES REELS
+
+       Chaque reel est évalué individuellement.
+
+       Si une partie du reel est visible :
+       → lecture
+
+       Si le reel est complètement hors écran :
+       → pause
+
+       La position de lecture est conservée.
+       ========================================================= */
+
+    function updateReelsPlayback() {
+
+        reelVideos.forEach(video => {
+
+            const shouldPlay =
+                isVideoVisibleInViewport(video);
+
+
+            if (shouldPlay) {
+
+                if (video.paused) {
+
+                    video
+                        .play()
+                        .catch(() => {});
+
+                }
+
+            } else {
+
+                if (!video.paused) {
+
+                    video.pause();
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================================
+       5 — LAZY PLAYBACK DES PARTICULES DU BAS
+
+       Les deux vidéos sont superposées et occupent
+       la même zone.
+
+       On utilise donc la première vidéo comme référence
+       géométrique.
+
+       Visible :
+       → lecture + crossfade
+
+       Hors écran :
+       → pause à la frame actuelle
        ========================================================= */
 
     let bottomParticlesVisibilityState =
@@ -1000,24 +1051,24 @@ function startBottomParticles() {
 
     function updateBottomParticlesPlayback() {
 
-        const distanceFromBottom =
-            document.documentElement.scrollHeight -
-            (
-                window.scrollY +
-                window.innerHeight
-            );
+        const referenceVideo =
+            backgroundParticles1 ||
+            backgroundParticles2;
 
 
         const shouldPlay =
-            distanceFromBottom <=
-            BACKGROUND_PARTICLES_TRIGGER_DISTANCE;
+            isVideoVisibleInViewport(
+                referenceVideo
+            );
 
 
         if (
             shouldPlay ===
             bottomParticlesVisibilityState
         ) {
+
             return;
+
         }
 
 
@@ -1032,68 +1083,77 @@ function startBottomParticles() {
         } else {
 
             stopBottomParticles();
+
         }
+
     }
 
 
-   /* =========================================================
-   VIDÉO DE FOND — ARRÊT FLUIDE À 5 SECONDES
-   ========================================================= */
+    /* =========================================================
+       6 — VIDÉO DE FOND — ARRÊT FLUIDE À 5 SECONDES
+       ========================================================= */
 
-let backgroundStopRequested = false;
+    let backgroundStopRequested = false;
 
-let backgroundStopCompleted = false;
+    let backgroundStopCompleted = false;
 
-let backgroundWaitingForNextLoop = false;
-
-
-/*
- * Demande d'arrêt à 5 secondes.
- *
- * Deux cas :
- *
- * 1. La vidéo est entre 0 et 5 s :
- *    → elle continue jusqu'à 5 s.
- *
- * 2. La vidéo est entre 5 et 10 s :
- *    → elle continue jusqu'à la fin,
- *      revient à 0,
- *      puis continue jusqu'à 5 s.
- */
-
-function stopBackgroundAtFiveSeconds() {
-
-    if (!backgroundVideo) {
-        return;
-    }
-
-
-    backgroundStopRequested = true;
-
-    backgroundStopCompleted = false;
+    let backgroundWaitingForNextLoop = false;
 
 
     /*
-     * On désactive temporairement la boucle native.
-     *
-     * Cela permet à "ended" de nous signaler
-     * précisément le passage de 10 s → 0 s.
+     * Demande d'arrêt à 5 secondes.
      */
 
-    backgroundVideo.loop = false;
+    function stopBackgroundAtFiveSeconds() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
 
 
-    /*
-     * CAS 1 :
-     * La vidéo est actuellement entre 0 et 5 secondes.
-     */
+        backgroundStopRequested = true;
 
-    if (
-        backgroundVideo.currentTime <
-        BACKGROUND_STOP_TIME
-    ) {
+        backgroundStopCompleted = false;
 
-        backgroundWaitingForNextLoop = false;
+        backgroundVideo.loop = false;
+
+
+        /*
+         * CAS 1 :
+         * La vidéo est entre 0 et 5 secondes.
+         */
+
+        if (
+            backgroundVideo.currentTime <
+            BACKGROUND_STOP_TIME
+        ) {
+
+            backgroundWaitingForNextLoop = false;
+
+
+            if (backgroundVideo.paused) {
+
+                backgroundVideo
+                    .play()
+                    .catch(() => {});
+
+            }
+
+            return;
+
+        }
+
+
+        /*
+         * CAS 2 :
+         * La vidéo est déjà entre 5 et 10 secondes.
+
+         * On la laisse terminer sa boucle.
+         */
+
+        backgroundWaitingForNextLoop = true;
 
 
         if (backgroundVideo.paused) {
@@ -1101,103 +1161,109 @@ function stopBackgroundAtFiveSeconds() {
             backgroundVideo
                 .play()
                 .catch(() => {});
+
         }
 
-        return;
     }
 
 
     /*
-     * CAS 2 :
-     * La vidéo est déjà entre 5 et 10 secondes.
-     *
-     * SURTOUT :
-     * on ne la met PAS en pause ici.
-     *
-     * On attend sa fin naturelle.
+     * Surveillance de l'arrivée à 5 secondes.
      */
 
-    backgroundWaitingForNextLoop = true;
+    function handleBackgroundTimeUpdate() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
 
 
-    if (backgroundVideo.paused) {
+        if (!backgroundStopRequested) {
 
-        backgroundVideo
-            .play()
-            .catch(() => {});
-    }
-}
+            return;
+
+        }
 
 
-/*
- * Surveillance de l'arrivée à 5 secondes.
- */
+        if (backgroundStopCompleted) {
 
-function handleBackgroundTimeUpdate() {
+            return;
 
-    if (!backgroundVideo) {
-        return;
-    }
+        }
 
 
-    if (!backgroundStopRequested) {
-        return;
-    }
+        if (
+            !backgroundWaitingForNextLoop &&
+            backgroundVideo.currentTime >=
+            BACKGROUND_STOP_TIME
+        ) {
 
+            backgroundVideo.pause();
 
-    if (backgroundStopCompleted) {
-        return;
+            backgroundStopCompleted = true;
+
+            return;
+
+        }
+
     }
 
 
     /*
-     * Si nous sommes encore dans la boucle actuelle
-     * et que nous sommes sous 5 secondes :
-     *
-     * → arrêt naturel à 5 secondes.
+     * La vidéo de fond vient d'atteindre sa fin.
      */
 
-    if (
-        !backgroundWaitingForNextLoop &&
-        backgroundVideo.currentTime >=
-        BACKGROUND_STOP_TIME
-    ) {
+    function handleBackgroundEnded() {
 
-        backgroundVideo.pause();
+        if (!backgroundVideo) {
 
-        backgroundStopCompleted = true;
+            return;
 
-        return;
-    }
+        }
 
 
-    /*
-     * Si backgroundWaitingForNextLoop === true,
-     * on NE FAIT RIEN ici.
-     *
-     * La vidéo doit continuer jusqu'à 10 secondes.
-     */
-}
+        /*
+         * Aucun arrêt demandé :
+         * fonctionnement normal de la boucle.
+         */
+
+        if (!backgroundStopRequested) {
+
+            backgroundVideo.currentTime = 0;
+
+            backgroundVideo
+                .play()
+                .catch(() => {});
+
+            return;
+
+        }
 
 
-/*
- * La vidéo de fond vient d'atteindre 10 secondes.
- */
+        /*
+         * On attendait la fin de la boucle 5 → 10 s.
+         */
 
-function handleBackgroundEnded() {
+        if (backgroundWaitingForNextLoop) {
 
-    if (!backgroundVideo) {
-        return;
-    }
+            backgroundWaitingForNextLoop = false;
+
+            backgroundVideo.currentTime = 0;
+
+            backgroundVideo
+                .play()
+                .catch(() => {});
+
+            return;
+
+        }
 
 
-    /*
-     * Aucun arrêt demandé :
-     *
-     * fonctionnement normal de la boucle.
-     */
-
-    if (!backgroundStopRequested) {
+        /*
+         * Sécurité.
+         */
 
         backgroundVideo.currentTime = 0;
 
@@ -1205,112 +1271,50 @@ function handleBackgroundEnded() {
             .play()
             .catch(() => {});
 
-        return;
     }
 
 
     /*
-     * Nous étions dans la deuxième partie
-     * de la boucle (5 → 10 s).
-     *
-     * On vient donc d'arriver naturellement
-     * à la fin de la boucle.
-     *
-     * On repart à 0 et on attend maintenant
-     * les 5 secondes de la nouvelle boucle.
+     * La vidéo principale est remise en pause.
      */
 
-    if (backgroundWaitingForNextLoop) {
+    function resumeBackgroundVideo() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
+
+
+        backgroundStopRequested = false;
+
+        backgroundStopCompleted = false;
 
         backgroundWaitingForNextLoop = false;
 
-        backgroundVideo.currentTime = 0;
+        backgroundVideo.loop = true;
+
+
+        /*
+         * Aucun changement de currentTime.
+         */
 
         backgroundVideo
             .play()
             .catch(() => {});
 
-        return;
     }
-
-
-    /*
-     * Sécurité :
-     * si l'événement "ended" intervient alors
-     * qu'on attendait simplement 5 secondes,
-     * on repart normalement.
-     */
-
-    backgroundVideo.currentTime = 0;
-
-    backgroundVideo
-        .play()
-        .catch(() => {});
-}
-
-
-/*
- * La vidéo principale est remise en pause.
- *
- * Toute demande d'arrêt à 5 secondes est annulée.
- *
- * Le background reprend exactement à sa position
- * actuelle.
- */
-
-function resumeBackgroundVideo() {
-
-    if (!backgroundVideo) {
-        return;
-    }
-
-
-    /*
-     * Annulation complète de la logique
-     * d'arrêt à 5 secondes.
-     */
-
-    backgroundStopRequested = false;
-
-    backgroundStopCompleted = false;
-
-    backgroundWaitingForNextLoop = false;
-
-
-    /*
-     * Retour à la boucle normale.
-     */
-
-    backgroundVideo.loop = true;
-
-
-    /*
-     * Aucun changement de currentTime.
-     *
-     * La vidéo reprend exactement là où elle
-     * se trouve.
-     */
-
-    backgroundVideo
-        .play()
-        .catch(() => {});
-}
 
 
     /* =========================================================
-       6 — ÉTAT DE LA VIDÉO PRINCIPALE
-       
-       C'est le seul endroit qui orchestre :
-       - zoom de la carte
-       - sweep
-       - particules du haut
-       - vidéo de fond
+       7 — ÉTAT DE LA VIDÉO PRINCIPALE
        ========================================================= */
 
     function mainVideoPlaying() {
 
         /*
-         * Zoom identique au hover CSS.
+         * Zoom.
          */
 
         if (videoCardMain) {
@@ -1318,6 +1322,7 @@ function resumeBackgroundVideo() {
             videoCardMain.classList.add(
                 "video-playing"
             );
+
         }
 
 
@@ -1328,12 +1333,12 @@ function resumeBackgroundVideo() {
         if (edgeSweepVideo) {
 
             edgeSweepVideo.style.opacity = "0";
+
         }
 
 
         /*
-         * Particules du haut invisibles
-         * et arrêtées.
+         * Particules du haut arrêtées.
          */
 
         stopTopParticles();
@@ -1341,10 +1346,11 @@ function resumeBackgroundVideo() {
 
         /*
          * Vidéo de fond :
-         * demande d'arrêt exactement à 5 s.
+         * arrêt exactement à 5 secondes.
          */
 
         stopBackgroundAtFiveSeconds();
+
     }
 
 
@@ -1359,6 +1365,7 @@ function resumeBackgroundVideo() {
             videoCardMain.classList.remove(
                 "video-playing"
             );
+
         }
 
 
@@ -1369,12 +1376,13 @@ function resumeBackgroundVideo() {
         if (edgeSweepVideo) {
 
             edgeSweepVideo.style.opacity = "1";
+
         }
 
 
         /*
          * Particules du haut :
-         * elles reprennent leur cycle complet.
+         * reprise de leur cycle complet.
          */
 
         startTopParticles();
@@ -1382,15 +1390,16 @@ function resumeBackgroundVideo() {
 
         /*
          * Vidéo de fond :
-         * elle reprend normalement.
+         * reprise normale.
          */
 
         resumeBackgroundVideo();
+
     }
 
 
     /* =========================================================
-       7 — ÉVÉNEMENTS VIDÉO PRINCIPALE
+       8 — ÉVÉNEMENTS VIDÉO PRINCIPALE
        ========================================================= */
 
     mainVideo.addEventListener(
@@ -1398,10 +1407,12 @@ function resumeBackgroundVideo() {
         mainVideoPlaying
     );
 
+
     mainVideo.addEventListener(
         "pause",
         mainVideoPaused
     );
+
 
     mainVideo.addEventListener(
         "ended",
@@ -1410,7 +1421,7 @@ function resumeBackgroundVideo() {
 
 
     /* =========================================================
-       8 — ÉVÉNEMENTS VIDÉO DE FOND
+       9 — ÉVÉNEMENTS VIDÉO DE FOND
        ========================================================= */
 
     if (backgroundVideo) {
@@ -1420,18 +1431,20 @@ function resumeBackgroundVideo() {
             handleBackgroundTimeUpdate
         );
 
+
         backgroundVideo.addEventListener(
             "ended",
             handleBackgroundEnded
         );
+
     }
 
 
     /* =========================================================
-       9 — SCROLL
-       
-       Un seul listener de scroll.
-       Il met à jour les deux systèmes de lazy playback.
+       10 — SCROLL
+
+       Un seul listener de scroll pour les deux systèmes
+       de lazy playback.
        ========================================================= */
 
     function handleScroll() {
@@ -1439,32 +1452,67 @@ function resumeBackgroundVideo() {
         updateReelsPlayback();
 
         updateBottomParticlesPlayback();
+
     }
 
 
     window.addEventListener(
         "scroll",
         handleScroll,
-        { passive: true }
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * Si le viewport change de taille :
+     * - rotation du téléphone
+     * - redimensionnement de la fenêtre
+     * - changement de responsive
+
+     * on recalcule immédiatement la visibilité.
+     */
+
+    window.addEventListener(
+        "resize",
+        handleScroll,
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "orientationchange",
+        handleScroll,
+        {
+            passive: true
+        }
     );
 
 
     /* =========================================================
-       10 — ÉTAT INITIAL
+       11 — ÉTAT INITIAL
        ========================================================= */
 
     /*
-     * Les reels ne doivent pas jouer au chargement.
+     * Les reels commencent en pause.
+     * updateReelsPlayback() détermine ensuite
+     * lesquels sont réellement visibles.
      */
 
     reelVideos.forEach(video => {
+
         video.pause();
+
     });
 
 
     /*
-     * Les particules du bas ne doivent pas jouer
-     * au chargement si elles sont hors seuil.
+     * Les particules du bas commencent en pause.
+     * updateBottomParticlesPlayback() détermine ensuite
+     * si leur zone est visible.
      */
 
     stopBottomParticles();
@@ -1482,11 +1530,12 @@ function resumeBackgroundVideo() {
     } else {
 
         mainVideoPlaying();
+
     }
 
 
     /*
-     * État initial des reels et des particules du bas.
+     * État initial du lazy playback.
      */
 
     updateReelsPlayback();
@@ -1494,3 +1543,4 @@ function resumeBackgroundVideo() {
     updateBottomParticlesPlayback();
 
 });
+
