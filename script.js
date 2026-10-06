@@ -1,1089 +1,1546 @@
-/* =============================================================
-   RESET
-   ============================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: "Raleway", sans-serif;
-    background: #323232;
-    color: #ffffff;
-}
-
-
-/* =============================================================
-   PAGE
-   ============================================================= */
-
-.page {
-    position: relative;
-    width: 100%;
-    min-height: 2010px;
-    overflow: hidden;
-}
-
-/* =========================================================
-   FOND VIDÉO — HALF LOOP
-   ========================================================= */
-
-.background-video {
-
-    position: absolute;
-
-    top: -3px;
-    left: 0;
-
-    width: 100%;
-    min-height: 100%;
-
-    object-fit: cover;
-    object-position: top center;
-
-    z-index: 0;
-
-    pointer-events: none;
-
-}
-
-/* =============================================================
-   CONTENU
-   ============================================================= */
-
-main {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* =============================================================
-   HEADER
-   ============================================================= */
-
-.hero-header {
-    text-align: center;
-    padding-top: 40px;
-    letter-spacing: -1px;
-}
-
-.hero-header h1 {
-    margin: 0;
-
-    font-size: 54px;
-    line-height: 1;
-
-    font-weight: 500;
-
-    text-shadow:
-        0 0 5px rgba(149, 253, 253, 0.7),
-        0 0 20px rgba(124, 255, 255, 0.5),
-        0 0 40px rgba(167, 255, 252, 0.3),
-        0 0 30px rgba(0, 11, 28, 0.25);
-}
-
-.subtitle {
-    margin: 50px 20px 0;
-
-    font-size: 47px;
-    line-height: 1.05;
-
-    font-weight: 400;
-
-    text-shadow:
-        0 0 5px rgba(149, 253, 253, 0.8),
-        0 0 20px rgba(124, 255, 255, 0.6),
-        0 0 40px rgba(167, 255, 252, 0.4),
-        0 0 30px rgba(0, 11, 28, 0.33);
-}
-
-
-/* =============================================================
-   SECTION PRÉSENTATION
-   ============================================================= */
-
-.presentation-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin-top: 50px;
-}
-
-
-/* =============================================================
-   WRAPPER VIDÉO PRINCIPALE
-   ============================================================= */
-
-.main-video-wrapper {
-    position: relative;
-
-    width: min(695px, 67vw);
-
-    aspect-ratio: 16 / 9;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    isolation: isolate;
-
-    overflow: visible;
-}
-
-
-/* =============================================================
-   PARTICULES DU HAUT — CROSSFADE
-   ============================================================= */
-
-.particles-loop-a,
-.particles-loop-b {
-
-    position: absolute;
-
-    top: 50%;
-
-    left: 50%;
-
-    width: 170%;
-
-    height: auto;
-
-    transform: translate(-50%, -50%);
-
-    object-fit: contain;
-
-    pointer-events: none;
-
-    z-index: 0;
-
-    opacity: 0;
-
-    transition: opacity 1s linear;
-
-}
-
-
-/* =============================================================
-   MASQUAGE DES PARTICULES
-   ============================================================= */
-
-.main-video-wrapper.particles-hidden .particles-loop-a,
-.main-video-wrapper.particles-hidden .particles-loop-b {
-    opacity: 0 !important;
-}
-
-
-/* =============================================================
-   CARTE VIDÉO PRINCIPALE
-   ============================================================= */
-
-.video-card {
-    position: relative;
-}
-
-.video-card-main {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    border-radius: 25.5px;
-
-    overflow: visible;
-
-    z-index: 2;
-
-    transition:
-        transform 0.4s ease,
-        filter 0.4s ease;
-
-    filter:
-        drop-shadow(0 0 10px rgba(149, 253, 249, 0.4))
-        drop-shadow(0 0 30px rgba(124, 255, 255, 0.2))
-        drop-shadow(0 0 60px rgba(167, 255, 252, 0.1));
-}
-
-.video-card-main:hover {
-    transform: scale(1.1);
-
-    filter:
-        drop-shadow(0 0 12px rgba(149, 253, 249, 0.7))
-        drop-shadow(0 0 35px rgba(124, 255, 255, 0.45))
-        drop-shadow(0 0 70px rgba(167, 255, 252, 0.25));
-}
-
-
-/* =============================================================
-   VIDÉO PRINCIPALE
-   ============================================================= */
-
-.main-video {
-    position: relative;
-
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    border-radius: inherit;
-
-    background: #000000;
-
-    z-index: 2;
-}
-
-/* =============================================================
-   ZOOM DE LA VIDÉO PRINCIPALE PENDANT LA LECTURE
-   ============================================================= */
-
-.video-card-main.video-playing {
-    transform: scale(1.1);
-}
-/* =============================================================
-   EDGE SWEEP
-   ============================================================= */
-
-.edge-sweep-video {
-    position: absolute;
-
-    width: 122%;
-    height: 122%;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    object-fit: fill;
-
-    pointer-events: none;
-
-    z-index: 3;
-
-    opacity: 1;
-
-    transition: opacity 0.5s ease;
-}
-
-
-/* =============================================================
-   GLOW
-   ============================================================= */
-
-.video-glow {
-    position: absolute;
-
-    inset: 0;
-
-    border-radius: inherit;
-
-    z-index: -1;
-
-    pointer-events: none;
-
-    filter: blur(7px);
-}
-
 
 /* =============================================================
    BOUTON CONTACT
    ============================================================= */
 
-.contact-button {
-    position: relative;
+const contactButton =
+    document.querySelector(".contact-button");
 
-    width: 350px;
-    height: 83px;
+const contactAnimation =
+    document.querySelector(".contact-animation");
 
-    margin-top: 70px;
 
-    border-radius: 23px;
+let contactAnimationInterval = null;
 
-    overflow: visible;
 
-    display: flex;
+/* =============================================================
+   LECTURE ANIMATION BOUTON
+   ============================================================= */
 
-    align-items: center;
-    justify-content: center;
+function playContactAnimation() {
 
-    background: transparent;
+    contactAnimation.pause();
 
-    color: #ffffff;
+    contactAnimation.currentTime = 0;
 
-    text-decoration: none;
+    contactAnimation.play().catch(() => {});
 
-    font-size: 44px;
-    font-weight: 500;
-
-    letter-spacing: -1px;
-
-    text-shadow:
-        0 0 10px rgba(149, 253, 253, 1),
-        0 0 20px rgba(124, 255, 255, 0.8),
-        0 0 40px rgba(167, 255, 252, 0.5),
-        0 0 10px rgba(0, 11, 28, 0.3);
-
-    filter:
-        drop-shadow(0 0 10px rgba(149, 253, 249, 0.01))
-        drop-shadow(0 0 30px rgba(124, 255, 255, 0.01))
-        drop-shadow(0 0 60px rgba(167, 255, 252, 0.01));
-
-    transition:
-        transform 0.4s ease,
-        filter 0.4s ease;
-}
-
-.contact-button:hover {
-    transform: scale(1.1);
-
-    filter:
-        drop-shadow(0 0 9px rgba(193, 255, 253, 0.7))
-        drop-shadow(0 0 25px rgba(168, 255, 255, 0.45))
-        drop-shadow(0 0 50px rgba(177, 255, 252, 0.25));
 }
 
 
 /* =============================================================
-   ANIMATION DU BOUTON
+   SURVOL BOUTON
    ============================================================= */
 
-.contact-animation {
-    position: absolute;
+contactButton.addEventListener("mouseenter", () => {
 
-    top: 50%;
-    left: 50%;
+    playContactAnimation();
 
-    width: 340%;
-    height: 320%;
+    clearInterval(contactAnimationInterval);
 
-    transform: translate(-50%, -50%);
+    contactAnimationInterval = setInterval(() => {
 
-    object-fit: fill;
+        playContactAnimation();
 
-    border-radius: inherit;
+    }, 1500);
 
-    pointer-events: none;
-
-    z-index: 1;
-}
-
-.contact-button-text {
-    position: relative;
-
-    z-index: 2;
-
-    pointer-events: none;
-}
+});
 
 
 /* =============================================================
-   RÉALISATIONS
+   SORTIE DU BOUTON
    ============================================================= */
 
-.trust-section {
-    text-align: center;
+contactButton.addEventListener("mouseleave", () => {
 
-    margin-top: 67px;
+    clearInterval(contactAnimationInterval);
 
-    text-shadow:
-        0 0 10px rgb(181, 255, 255),
-        0 0 20px rgba(172, 255, 255, 0.7),
-        0 0 40px rgba(135, 255, 251, 0.5),
-        0 0 10px rgba(0, 11, 28, 0.3);
-}
+    contactAnimationInterval = null;
 
-.trust-section h2,
-.testimonials-section h2 {
-    margin: 0;
-
-    font-size: 52px;
-    line-height: 1;
-
-    font-weight: 400;
-
-    letter-spacing: -0.65px;
-}
-
-
-/* =============================================================
-   REELS
-   ============================================================= */
-
-.reels-grid {
-    width: min(750px, 67vw);
-
-    margin: 67px auto 0;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 80px;
-}
-
-.video-card-reel {
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio: 9 / 16;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    display: block;
-
-    text-decoration: none;
-
-    filter:
-        drop-shadow(0 0 10px rgba(149, 253, 249, 0.4))
-        drop-shadow(0 0 30px rgba(124, 255, 255, 0.2))
-        drop-shadow(0 0 60px rgba(167, 255, 252, 0.1));
-
-    transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
-}
-
-.video-card-reel:hover {
-    transform: scale(1.08);
-
-    filter:
-        drop-shadow(0 0 12px rgba(149, 253, 249, 0.65))
-        drop-shadow(0 0 35px rgba(124, 255, 255, 0.4))
-        drop-shadow(0 0 70px rgba(167, 255, 252, 0.2));
-}
-
-.reel-video {
-    position: absolute;
-
-    width: 101%;
-    height: 101%;
-
-    left: -0.5%;
-    top: -0.5%;
-
-    object-fit: cover;
-
-    border-radius: inherit;
-
-    background: #000000;
-
-    z-index: 1;
-}
+});
 
 
 /* =============================================================
    AVIS CLIENTS
    ============================================================= */
 
-.testimonials-section {
-    text-align: center;
+const testimonials =
+    document.querySelectorAll(".testimonial-image");
 
-    margin-top: 73px;
+const testimonialDots =
+    document.querySelectorAll(".testimonial-dot");
 
-    letter-spacing: -0.75px;
+const testimonialPrevious =
+    document.querySelector(".testimonial-arrow-left");
 
-    text-shadow:
-        0 0 10px rgba(149, 253, 253, 0.7),
-        0 0 20px rgba(124, 255, 255, 0.5),
-        0 0 40px rgba(167, 255, 252, 0.3),
-        0 0 10px rgba(0, 11, 28, 0.3);
+const testimonialNext =
+    document.querySelector(".testimonial-arrow-right");
+
+
+let currentTestimonial = 0;
+
+let testimonialTimer;
+
+
+function showTestimonial(index) {
+
+    testimonials[currentTestimonial]
+        .classList.remove("active");
+
+    testimonialDots.forEach(dot => {
+
+        dot.classList.remove("active");
+
+    });
+
+    currentTestimonial = index;
+
+    testimonials[currentTestimonial]
+        .classList.add("active");
+
+    testimonialDots[currentTestimonial]
+        .classList.add("active");
+
 }
 
-.testimonials-carousel {
-    position: relative;
 
-    width: min(700px, 75vw);
+function resetTestimonialTimer() {
 
-    margin: 67px auto 0;
+    clearInterval(testimonialTimer);
 
-    display: flex;
+    testimonialTimer =
+        setInterval(
+            nextTestimonial,
+            10000
+        );
 
-    align-items: center;
-    justify-content: center;
 }
 
-.testimonials-box {
-    position: relative;
 
-    width: min(610px, 67vw);
+function nextTestimonial() {
 
-    aspect-ratio: 910 / 490;
+    const nextIndex =
+        (currentTestimonial + 1) %
+        testimonials.length;
 
-    border-radius: 20px;
+    showTestimonial(nextIndex);
 
-    background: #ffffff;
+    resetTestimonialTimer();
 
-    overflow: hidden;
-
-    filter:
-        drop-shadow(0 0 10px rgba(149, 253, 249, 0.5))
-        drop-shadow(0 0 30px rgba(124, 255, 255, 0.3))
-        drop-shadow(0 0 60px rgba(167, 255, 252, 0.15));
 }
 
-.testimonial-image {
-    position: absolute;
-    inset: 0;
 
-    width: 100%;
-    height: 100%;
+function previousTestimonial() {
 
-    object-fit: contain;
+    const previousIndex =
+        (
+            currentTestimonial - 1 +
+            testimonials.length
+        ) %
+        testimonials.length;
 
-    opacity: 0;
+    showTestimonial(previousIndex);
 
-    transition: opacity 1s ease-in-out;
+    resetTestimonialTimer();
 
-    pointer-events: none;
 }
 
-.testimonial-image.active {
-    opacity: 1;
-}
+
+testimonialPrevious.addEventListener(
+    "click",
+    previousTestimonial
+);
+
+
+testimonialNext.addEventListener(
+    "click",
+    nextTestimonial
+);
+
+
+testimonialDots.forEach((dot, index) => {
+
+    dot.addEventListener("click", () => {
+
+        showTestimonial(index);
+
+        resetTestimonialTimer();
+
+    });
+
+});
+
+
+resetTestimonialTimer();
 
 
 /* =============================================================
-   FLÈCHES
+   VAGUE DES ICÔNES
    ============================================================= */
 
-.testimonial-arrow {
-    position: absolute;
+const floatingIcons =
+    document.querySelectorAll(".floating-icon");
 
-    top: 50%;
 
-    transform: translateY(-50%);
+function playContactWave() {
 
-    width: 20px;
-    height: 42px;
+    floatingIcons.forEach((icon, index) => {
 
-    padding: 0;
+        setTimeout(() => {
 
-    border: none;
+            icon.classList.add("wave");
 
-    background: transparent;
+            icon.addEventListener(
+                "animationend",
+                () => {
 
-    color: #ffffff;
+                    icon.classList.remove("wave");
 
-    font-family: Arial, sans-serif;
+                },
+                {
+                    once: true
+                }
+            );
 
-    font-size: 70px;
+        }, index * 100);
 
-    font-weight: 300;
+    });
 
-    line-height: 38px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    opacity: 0.65;
-
-    filter:
-        drop-shadow(0 0 5px rgba(149, 253, 253, 0.8))
-        drop-shadow(0 0 20px rgba(124, 255, 255, 0.6))
-        drop-shadow(0 0 40px rgba(167, 255, 252, 0.4));
-
-    transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
 }
 
-.testimonial-arrow-left {
-    left: -10px;
-}
 
-.testimonial-arrow-right {
-    right: -10px;
-}
+/* Première vague */
 
-.testimonial-arrow:hover {
-    opacity: 1;
+setTimeout(() => {
 
-    transform: translateY(-50%) scale(1.12);
-}
+    playContactWave();
+
+    setInterval(
+        playContactWave,
+        20000
+    );
+
+}, 5000);
 
 
 /* =============================================================
-   INDICATEURS
+   BOUTON EMAIL
    ============================================================= */
 
-.testimonial-dots {
-    display: flex;
+const emailButton =
+    document.querySelector(".email-button");
 
-    align-items: center;
-    justify-content: center;
+const emailCopiedMessage =
+    document.querySelector(".email-copied-message");
 
-    gap: 10px;
+const emailAddress =
+    "kaloyan.petkov.contact@gmail.com";
 
-    margin-top: 30px;
-}
 
-.testimonial-dot {
-    width: 18px;
-    height: 18px;
-
-    flex: 0 0 18px;
-
-    padding: 0;
-
-    border: none;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    position: relative;
-
-    filter:
-        drop-shadow(0 0 5px rgba(149, 253, 253, 0.8))
-        drop-shadow(0 0 20px rgba(124, 255, 255, 0.6))
-        drop-shadow(0 0 40px rgba(167, 255, 252, 0.4));
-}
-
-.testimonial-dot::before {
-    content: "";
-
-    position: absolute;
-
-    width: 10px;
-    height: 10px;
-
-    top: 4px;
-    left: 4px;
-
-    border-radius: 50%;
-
-    border: 1px solid #ffffff;
-
-    background: transparent;
-
-    opacity: 0.75;
-
-    box-sizing: border-box;
-
-    transition:
-        background 0.25s ease,
-        opacity 0.25s ease,
-        transform 0.25s ease;
-}
-
-.testimonial-dot.active::before {
-    background: #ffffff;
-
-    opacity: 1;
-}
-
-.testimonial-dot:hover::before {
-    opacity: 1;
-
-    transform: scale(1.15);
-}
+let emailMessageTimer = null;
 
 
 /* =============================================================
-   BAS DE PAGE
+   CLIC SUR LE BOUTON EMAIL
    ============================================================= */
 
-.bottom-section {
-    height: 171px;
-}
+if (emailButton) {
 
+    emailButton.addEventListener("click", async (event) => {
 
-/* =============================================================
-   ICÔNES FIXES
-   ============================================================= */
+        /*
+            Empêche le mailto de se déclencher
+            immédiatement.
+        */
 
-.floating-contact-icons {
-    position: fixed;
+        event.preventDefault();
 
-    top: 45px;
-    right: 45px;
 
-    display: flex;
+        /*
+            Copie l'adresse e-mail.
+        */
 
-    flex-direction: row;
+        try {
 
-    align-items: center;
+            await navigator.clipboard.writeText(emailAddress);
 
-    gap: 20px;
+        } catch (error) {
 
-    z-index: 1000;
-}
+            /*
+                Solution de secours pour les navigateurs
+                qui bloquent Clipboard API.
+            */
 
-.floating-icon {
-    display: block;
+            const temporaryInput =
+                document.createElement("textarea");
 
-    width: 50px;
-    height: 42px;
+            temporaryInput.value =
+                emailAddress;
 
-    flex-shrink: 0;
+            temporaryInput.style.position =
+                "fixed";
 
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-}
+            temporaryInput.style.opacity =
+                "0";
 
-.floating-icon img {
-    display: block;
+            document.body.appendChild(
+                temporaryInput
+            );
 
-    width: 100%;
-    height: 100%;
+            temporaryInput.select();
 
-    object-fit: contain;
+            document.execCommand("copy");
 
-    filter:
-        drop-shadow(0 0 5px rgba(149, 253, 253, 0.6))
-        drop-shadow(0 0 20px rgba(124, 255, 255, 0.4))
-        drop-shadow(0 0 40px rgba(167, 255, 252, 0.25));
-}
+            temporaryInput.remove();
 
-.floating-icon:hover {
-    transform: scale(1.08);
-}
-
-
-/* =============================================================
-   VAGUE ICÔNES
-   ============================================================= */
-
-.floating-icon.wave {
-    animation: contactWave 1s ease-out;
-}
-
-@keyframes contactWave {
-
-    0% {
-        transform: translateY(0);
-    }
-
-    30% {
-        transform: translateY(-7px);
-    }
-
-    65% {
-        transform: translateY(1px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-
-}
-/* =============================================================
-   MESSAGE — E-MAIL COPIÉ
-   ============================================================= */
-
-.email-copied-message {
-
-    position: absolute;
-
-    top: calc(100% + 12px);
-    right: -22px;
-
-    white-space: nowrap;
-
-    font-size: 16px;
-    font-weight: 500;
-
-    color: #ffffff;
-
-    opacity: 0;
-
-    transform: translateY(-5px);
-
-    pointer-events: none;
-
-    text-shadow:
-        0 0 5px rgba(149, 253, 253, 0.8),
-        0 0 15px rgba(124, 255, 255, 0.6);
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-
-
-.email-copied-message.visible {
-
-    opacity: 1;
-
-    transform: translateY(0);
-
-}
-
-
-/* =============================================================
-   RESPONSIVE TABLETTE
-   ============================================================= */
-
-@media (min-width: 601px) and (max-width: 1000px) {
-
-    .hero-header h1 {
-        font-size: 48px;
-    }
-
-    .subtitle {
-        font-size: 36px;
-    }
-
-    .main-video-wrapper {
-        width: calc(100vw - 200px);
-    }
-
-    .contact-button {
-        width: min(350px, calc(100vw - 80px));
-
-        font-size: 36px;
-        min-height: 85px;
-    }
-
-    .trust-section h2,
-    .testimonials-section h2 {
-        font-size: 36px;
-    }
-        .testimonials-box {
-        width: calc(100vw - 300px);
-
-        min-height: 400px;
-
-        aspect-ratio: auto;
-
-        border-radius: 20px;
-    }
-        .testimonial-arrow-left {
-    left: -25px;
-    }
-
-    .testimonial-arrow-right {
-        right: -25px;
-    }
-  .reels-grid {
-    grid-template-columns: repeat(2, 1fr);
-
-    width: min(500px, calc(100vw - 48px));
-
-    gap: 30px;
-}
-
-.reels-grid .video-card-reel:nth-child(3) {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc((100% - 30px) / 2);
-    margin-top: 10px;   
-}
-    
-    .floating-contact-icons {
-        top: 50%;
-        right: 14px;
-
-        transform: translateY(-50%);
-
-        flex-direction: column;
-
-        gap: 32px;
-
-        align-items: center;
-    }
-
-    .floating-icon {
-        width: 36px;
-        height: 31px;
-    }
-
-}
-
-
-/* =============================================================
-   RESPONSIVE MOBILE
-   ============================================================= */
-
-@media (max-width: 600px) {
-
-    .page {
-        min-height: auto;
-    }
-
-    .hero-header {
-        padding-top: 45px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .hero-header h1 {
-        margin-top: 10px;
-        font-size: clamp(40px, 11vw, 60px);
-    }
-
-    .subtitle {
-        margin-top: 50px;
-
-        font-size: clamp(25px, 12vw, 29px);
-    }
-
-    .presentation-section {
-        margin-top: 70px;
-    }
-
-    .main-video-wrapper {
-        width: calc(100vw - 140px);
-    }
-
-    .contact-button {
-        width: calc(100vw - 260px);
-
-        min-height: 80px;
-
-        margin-top: 70px;
-
-        border-radius: 20px;
-
-        font-size: clamp(22px, 7vw, 32px);
-    }
-
-    .trust-section {
-        margin-top: 70px;
-    }
-    
-    .trust-section h2,
-    .testimonials-section h2 {
-        font-size: clamp(25px, 12vw, 36px);
-
-        padding: 0 20px;
-    }
-
-    .reels-grid {
-        width: min(270px, calc(100vw - 48px));
-
-        margin-top: 70px;
-
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-    }
-    
-    .testimonials-section {
-        margin-top: 80px;
-    }
-    .testimonial-arrow-left {
-    left: 0px;
-    }
-
-    .testimonial-arrow-right {
-        right: 0px;
-    }
-    .testimonials-box {
-        width: calc(100vw - 250px);
-
-        min-height: 400px;
-
-        aspect-ratio: auto;
-
-        border-radius: 20px;
-    }
-
-    .bottom-section {
-        height: 100px;
-    }
-    .floating-contact-icons {
-            top: 50%;
-            right: 10px;
-
-            transform: translateY(-50%);
-
-            flex-direction: column;
-
-            gap: 32px;
-
-            align-items: center;
         }
 
-        .floating-icon {
-            width: 31.5px;
-            height: 27px;
+
+        /*
+            Affiche "E-mail copié !"
+        */
+
+        if (emailCopiedMessage) {
+
+            emailCopiedMessage.classList.add(
+                "visible"
+            );
+
+
+            /*
+                Réinitialise le délai
+                si l'utilisateur reclique.
+            */
+
+            clearTimeout(
+                emailMessageTimer
+            );
+
+
+            /*
+                Cache le message après 2 secondes.
+            */
+
+            emailMessageTimer =
+                setTimeout(() => {
+
+                    emailCopiedMessage.classList.remove(
+                        "visible"
+                    );
+
+                }, 2000);
+
         }
-}
 
-/* =========================================================
-   PARTICULES DU FOND
-   ========================================================= */
 
-.background-particles-wrapper {
+        /*
+            Ouvre ensuite l'application e-mail
+            configurée sur l'ordinateur.
 
-    position: absolute;
+            Si aucune application n'est configurée,
+            rien ne se passe, mais l'adresse a quand
+            même été copiée.
+        */
 
-    left: 0;
-    bottom: 0;
+        window.location.href =
+            "mailto:" + emailAddress;
 
-    width: 100%;
+    });
 
-    /* Hauteur correspondant au ratio 1440 × 3000 */
-    aspect-ratio: 1440 / 3000;
-
-    pointer-events: none;
-
-    overflow: hidden;
-
-    z-index: 1;
 }
 
 
-/* =========================================================
-   VIDÉOS
-   ========================================================= */
-
-.background-particles {
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: contain;
-
-    pointer-events: none;
-
-    transition: opacity 1s linear;
-}
+document.addEventListener("DOMContentLoaded", () => {
 
 
-/* =========================================================
-   PREMIÈRE VIDÉO
-   ========================================================= */
+    /* =========================================================
+       RÉFÉRENCES VIDÉOS
+       ========================================================= */
 
-.background-particles-1 {
+    const mainVideo =
+        document.querySelector(".main-video");
 
-    opacity: 1;
-    transform: scaleX(1);
-}
+    const videoCardMain =
+        document.querySelector(".video-card-main");
+
+    const edgeSweepVideo =
+        document.querySelector(".edge-sweep-video");
+
+    const backgroundVideo =
+        document.querySelector(".background-video");
+
+    const particlesLoopA =
+        document.querySelector(".particles-loop-a");
+
+    const particlesLoopB =
+        document.querySelector(".particles-loop-b");
+
+    const backgroundParticles1 =
+        document.querySelector(".background-particles-1");
+
+    const backgroundParticles2 =
+        document.querySelector(".background-particles-2");
+
+    const reelVideos =
+        document.querySelectorAll(".reel-video");
 
 
-/* =========================================================
-   DEUXIÈME VIDÉO
-   ========================================================= */
+    /* =========================================================
+       PARAMÈTRES GÉNÉRAUX
+       ========================================================= */
 
-.background-particles-2 {
+    const PARTICLES_DURATION = 7000;
 
-    opacity: 0;
-    transform: scaleX(-1);
-}
+    const PARTICLES_CROSSFADE = 1000;
+
+    const BACKGROUND_STOP_TIME = 5;
+
+
+    /* =========================================================
+       SÉCURITÉ : ON VÉRIFIE QUE LES ÉLÉMENTS EXISTENT
+       ========================================================= */
+
+    if (!mainVideo) {
+
+        return;
+
+    }
+
+
+    /* =========================================================
+       1 — PARTICULES DU HAUT
+
+       A et B utilisent la même vidéo source.
+       Une seule est visible à la fois, avec crossfade
+       sur la dernière seconde.
+       ========================================================= */
+
+    let topParticlesActive =
+        particlesLoopA;
+
+    let topParticlesInactive =
+        particlesLoopB;
+
+    let topParticlesTimer = null;
+
+    let topParticlesStopTimer = null;
+
+    let topParticlesRunning = false;
+
+
+    function resetTopParticlesVideo(video) {
+
+        if (!video) {
+
+            return;
+
+        }
+
+        video.pause();
+
+        video.currentTime = 0;
+
+        video.style.opacity = "0";
+
+    }
+
+
+    function stopTopParticles() {
+
+        topParticlesRunning = false;
+
+        clearTimeout(topParticlesTimer);
+
+        clearTimeout(topParticlesStopTimer);
+
+        topParticlesTimer = null;
+
+        topParticlesStopTimer = null;
+
+
+        /*
+         * Les deux vidéos deviennent immédiatement
+         * invisibles.
+         */
+
+        if (particlesLoopA) {
+
+            particlesLoopA.style.opacity = "0";
+
+        }
+
+        if (particlesLoopB) {
+
+            particlesLoopB.style.opacity = "0";
+
+        }
+
+
+        /*
+         * On attend la fin du fondu avant de
+         * remettre les vidéos à zéro.
+         */
+
+        topParticlesStopTimer =
+            setTimeout(() => {
+
+                resetTopParticlesVideo(
+                    particlesLoopA
+                );
+
+                resetTopParticlesVideo(
+                    particlesLoopB
+                );
+
+                topParticlesStopTimer = null;
+
+            }, PARTICLES_CROSSFADE);
+
+    }
+
+
+    function startTopParticles() {
+
+        if (
+            !particlesLoopA ||
+            !particlesLoopB
+        ) {
+
+            return;
+
+        }
+
+
+        clearTimeout(topParticlesTimer);
+
+        clearTimeout(topParticlesStopTimer);
+
+        topParticlesTimer = null;
+
+        topParticlesStopTimer = null;
+
+        topParticlesRunning = true;
+
+
+        /*
+         * Les deux vidéos sont invisibles à ce moment.
+         * On peut donc les remettre à zéro.
+         */
+
+        particlesLoopA.pause();
+
+        particlesLoopB.pause();
+
+        particlesLoopA.currentTime = 0;
+
+        particlesLoopB.currentTime = 0;
+
+
+        /*
+         * A devient la vidéo active.
+         */
+
+        particlesLoopA.style.opacity = "1";
+
+        particlesLoopB.style.opacity = "0";
+
+        topParticlesActive =
+            particlesLoopA;
+
+        topParticlesInactive =
+            particlesLoopB;
+
+
+        /*
+         * Lecture de A.
+         */
+
+        topParticlesActive
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Premier crossfade après 6 secondes.
+         */
+
+        topParticlesTimer =
+            setTimeout(
+                crossfadeTopParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
+    }
+
+
+    /* =========================================================
+       CROSSFADE PARTICULES DU HAUT
+       ========================================================= */
+
+    function crossfadeTopParticles() {
+
+        if (
+            !topParticlesRunning ||
+            !topParticlesActive ||
+            !topParticlesInactive
+        ) {
+
+            return;
+
+        }
+
+
+        const current =
+            topParticlesActive;
+
+        const next =
+            topParticlesInactive;
+
+
+        /*
+         * Prépare la prochaine vidéo.
+         */
+
+        next.pause();
+
+        next.currentTime = 0;
+
+        next.style.opacity = "0";
+
+
+        /*
+         * La prochaine vidéo démarre.
+         */
+
+        next
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Début du crossfade.
+         */
+
+        requestAnimationFrame(() => {
+
+            if (!topParticlesRunning) {
+
+                return;
+
+            }
+
+            current.style.opacity = "0";
+
+            next.style.opacity = "1";
+
+        });
+
+
+        /*
+         * Lorsque le crossfade est terminé,
+         * l'ancienne vidéo est arrêtée et remise à zéro.
+         */
+
+        clearTimeout(topParticlesStopTimer);
+
+        topParticlesStopTimer =
+            setTimeout(() => {
+
+                current.pause();
+
+                current.currentTime = 0;
+
+                current.style.opacity = "0";
+
+            }, PARTICLES_CROSSFADE);
+
+
+        /*
+         * Inversion des rôles.
+         */
+
+        topParticlesActive =
+            next;
+
+        topParticlesInactive =
+            current;
+
+
+        /*
+         * Nouveau cycle.
+         */
+
+        clearTimeout(topParticlesTimer);
+
+        topParticlesTimer =
+            setTimeout(
+                crossfadeTopParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
+    }
+
+
+    /* =========================================================
+       2 — PARTICULES DU BAS
+
+       Les particules du bas utilisent le même système
+       de crossfade, mais leur lecture est contrôlée
+       par leur visibilité dans le viewport.
+       ========================================================= */
+
+    let bottomParticlesActive =
+        backgroundParticles1;
+
+    let bottomParticlesInactive =
+        backgroundParticles2;
+
+    let bottomParticlesTimer = null;
+
+    let bottomParticlesStopTimer = null;
+
+    let bottomParticlesRunning = false;
+
+
+    function pauseBottomParticlesVideo(video) {
+
+        if (!video) {
+
+            return;
+
+        }
+
+        video.pause();
+
+    }
+
+
+    /*
+     * Arrêt du lazy playback.
+
+     * IMPORTANT :
+     * aucune remise à zéro du currentTime.
+     * aucune modification d'opacité.
+     * aucun nouveau crossfade.
+
+     * On gèle simplement les deux vidéos
+     * dans leur état actuel.
+     */
+
+    function stopBottomParticles() {
+
+        bottomParticlesRunning = false;
+
+        clearTimeout(bottomParticlesTimer);
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesTimer = null;
+
+        bottomParticlesStopTimer = null;
+
+
+        pauseBottomParticlesVideo(
+            backgroundParticles1
+        );
+
+        pauseBottomParticlesVideo(
+            backgroundParticles2
+        );
+
+    }
+
+
+    /*
+     * Reprise du lazy playback.
+
+     * Les vidéos reprennent exactement à leur
+     * currentTime précédent.
+     */
+
+    function startBottomParticles() {
+
+        if (
+            !backgroundParticles1 ||
+            !backgroundParticles2
+        ) {
+
+            return;
+
+        }
+
+
+        if (bottomParticlesRunning) {
+
+            return;
+
+        }
+
+
+        bottomParticlesRunning = true;
+
+
+        clearTimeout(bottomParticlesTimer);
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesTimer = null;
+
+        bottomParticlesStopTimer = null;
+
+
+        /*
+         * Reprise de la vidéo actuellement active.
+
+         * Aucun currentTime = 0.
+         */
+
+        bottomParticlesActive
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Si la deuxième vidéo participait déjà
+         * à un crossfade, elle reprend également.
+         */
+
+        if (
+            bottomParticlesInactive &&
+            bottomParticlesInactive.currentTime > 0
+        ) {
+
+            bottomParticlesInactive
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        /*
+         * Recalcul du temps restant avant
+         * le prochain crossfade.
+         */
+
+        const remainingTime =
+            Math.max(
+                0,
+                (
+                    PARTICLES_DURATION -
+                    PARTICLES_CROSSFADE
+                ) -
+                (
+                    bottomParticlesActive.currentTime *
+                    1000
+                )
+            );
+
+
+        bottomParticlesTimer =
+            setTimeout(
+                crossfadeBottomParticles,
+                remainingTime
+            );
+
+    }
+
+
+    function crossfadeBottomParticles() {
+
+        if (
+            !bottomParticlesRunning ||
+            !bottomParticlesActive ||
+            !bottomParticlesInactive
+        ) {
+
+            return;
+
+        }
+
+
+        const current =
+            bottomParticlesActive;
+
+        const next =
+            bottomParticlesInactive;
+
+
+        /*
+         * Prépare la prochaine vidéo.
+         */
+
+        next.pause();
+
+        next.currentTime = 0;
+
+        next.style.opacity = "0";
+
+
+        /*
+         * La prochaine vidéo démarre.
+         */
+
+        next
+            .play()
+            .catch(() => {});
+
+
+        /*
+         * Crossfade.
+         */
+
+        requestAnimationFrame(() => {
+
+            if (!bottomParticlesRunning) {
+
+                return;
+
+            }
+
+            current.style.opacity = "0";
+
+            next.style.opacity = "1";
+
+        });
+
+
+        /*
+         * Une fois le crossfade terminé,
+         * l'ancienne vidéo est arrêtée et remise à zéro.
+         */
+
+        clearTimeout(bottomParticlesStopTimer);
+
+        bottomParticlesStopTimer =
+            setTimeout(() => {
+
+                current.pause();
+
+                current.currentTime = 0;
+
+                current.style.opacity = "0";
+
+            }, PARTICLES_CROSSFADE);
+
+
+        /*
+         * Inversion des rôles.
+         */
+
+        bottomParticlesActive =
+            next;
+
+        bottomParticlesInactive =
+            current;
+
+
+        /*
+         * Nouveau cycle.
+         */
+
+        clearTimeout(bottomParticlesTimer);
+
+        bottomParticlesTimer =
+            setTimeout(
+                crossfadeBottomParticles,
+                PARTICLES_DURATION -
+                PARTICLES_CROSSFADE
+            );
+
+    }
+
+
+    /* =========================================================
+       3 — DÉTECTION DE VISIBILITÉ
+
+       Une vidéo est considérée comme visible dès qu'une
+       partie de sa surface se trouve dans le viewport.
+
+       Il n'y a plus aucune distance fixe en pixels.
+       ========================================================= */
+
+    function isVideoVisibleInViewport(video) {
+
+        if (!video) {
+
+            return false;
+
+        }
+
+
+        const rect =
+            video.getBoundingClientRect();
+
+
+        return (
+            rect.bottom > 0 &&
+            rect.top < window.innerHeight
+        );
+
+    }
+
+
+    /* =========================================================
+       4 — LAZY PLAYBACK DES REELS
+
+       Chaque reel est évalué individuellement.
+
+       Si une partie du reel est visible :
+       → lecture
+
+       Si le reel est complètement hors écran :
+       → pause
+
+       La position de lecture est conservée.
+       ========================================================= */
+
+    function updateReelsPlayback() {
+
+        reelVideos.forEach(video => {
+
+            const shouldPlay =
+                isVideoVisibleInViewport(video);
+
+
+            if (shouldPlay) {
+
+                if (video.paused) {
+
+                    video
+                        .play()
+                        .catch(() => {});
+
+                }
+
+            } else {
+
+                if (!video.paused) {
+
+                    video.pause();
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================================
+       5 — LAZY PLAYBACK DES PARTICULES DU BAS
+
+       Les deux vidéos sont superposées et occupent
+       la même zone.
+
+       On utilise donc la première vidéo comme référence
+       géométrique.
+
+       Visible :
+       → lecture + crossfade
+
+       Hors écran :
+       → pause à la frame actuelle
+       ========================================================= */
+
+    let bottomParticlesVisibilityState =
+        false;
+
+
+    function updateBottomParticlesPlayback() {
+
+        const referenceVideo =
+            backgroundParticles1 ||
+            backgroundParticles2;
+
+
+        const shouldPlay =
+            isVideoVisibleInViewport(
+                referenceVideo
+            );
+
+
+        if (
+            shouldPlay ===
+            bottomParticlesVisibilityState
+        ) {
+
+            return;
+
+        }
+
+
+        bottomParticlesVisibilityState =
+            shouldPlay;
+
+
+        if (shouldPlay) {
+
+            startBottomParticles();
+
+        } else {
+
+            stopBottomParticles();
+
+        }
+
+    }
+
+
+    /* =========================================================
+       6 — VIDÉO DE FOND — ARRÊT FLUIDE À 5 SECONDES
+       ========================================================= */
+
+    let backgroundStopRequested = false;
+
+    let backgroundStopCompleted = false;
+
+    let backgroundWaitingForNextLoop = false;
+
+
+    /*
+     * Demande d'arrêt à 5 secondes.
+     */
+
+    function stopBackgroundAtFiveSeconds() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
+
+
+        backgroundStopRequested = true;
+
+        backgroundStopCompleted = false;
+
+        backgroundVideo.loop = false;
+
+
+        /*
+         * CAS 1 :
+         * La vidéo est entre 0 et 5 secondes.
+         */
+
+        if (
+            backgroundVideo.currentTime <
+            BACKGROUND_STOP_TIME
+        ) {
+
+            backgroundWaitingForNextLoop = false;
+
+
+            if (backgroundVideo.paused) {
+
+                backgroundVideo
+                    .play()
+                    .catch(() => {});
+
+            }
+
+            return;
+
+        }
+
+
+        /*
+         * CAS 2 :
+         * La vidéo est déjà entre 5 et 10 secondes.
+
+         * On la laisse terminer sa boucle.
+         */
+
+        backgroundWaitingForNextLoop = true;
+
+
+        if (backgroundVideo.paused) {
+
+            backgroundVideo
+                .play()
+                .catch(() => {});
+
+        }
+
+    }
+
+
+    /*
+     * Surveillance de l'arrivée à 5 secondes.
+     */
+
+    function handleBackgroundTimeUpdate() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
+
+
+        if (!backgroundStopRequested) {
+
+            return;
+
+        }
+
+
+        if (backgroundStopCompleted) {
+
+            return;
+
+        }
+
+
+        if (
+            !backgroundWaitingForNextLoop &&
+            backgroundVideo.currentTime >=
+            BACKGROUND_STOP_TIME
+        ) {
+
+            backgroundVideo.pause();
+
+            backgroundStopCompleted = true;
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+     * La vidéo de fond vient d'atteindre sa fin.
+     */
+
+    function handleBackgroundEnded() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
+
+
+        /*
+         * Aucun arrêt demandé :
+         * fonctionnement normal de la boucle.
+         */
+
+        if (!backgroundStopRequested) {
+
+            backgroundVideo.currentTime = 0;
+
+            backgroundVideo
+                .play()
+                .catch(() => {});
+
+            return;
+
+        }
+
+
+        /*
+         * On attendait la fin de la boucle 5 → 10 s.
+         */
+
+        if (backgroundWaitingForNextLoop) {
+
+            backgroundWaitingForNextLoop = false;
+
+            backgroundVideo.currentTime = 0;
+
+            backgroundVideo
+                .play()
+                .catch(() => {});
+
+            return;
+
+        }
+
+
+        /*
+         * Sécurité.
+         */
+
+        backgroundVideo.currentTime = 0;
+
+        backgroundVideo
+            .play()
+            .catch(() => {});
+
+    }
+
+
+    /*
+     * La vidéo principale est remise en pause.
+     */
+
+    function resumeBackgroundVideo() {
+
+        if (!backgroundVideo) {
+
+            return;
+
+        }
+
+
+        backgroundStopRequested = false;
+
+        backgroundStopCompleted = false;
+
+        backgroundWaitingForNextLoop = false;
+
+        backgroundVideo.loop = true;
+
+
+        /*
+         * Aucun changement de currentTime.
+         */
+
+        backgroundVideo
+            .play()
+            .catch(() => {});
+
+    }
+
+
+    /* =========================================================
+       7 — ÉTAT DE LA VIDÉO PRINCIPALE
+       ========================================================= */
+
+    function mainVideoPlaying() {
+
+        /*
+         * Zoom.
+         */
+
+        if (videoCardMain) {
+
+            videoCardMain.classList.add(
+                "video-playing"
+            );
+
+        }
+
+
+        /*
+         * Sweep invisible.
+         */
+
+        if (edgeSweepVideo) {
+
+            edgeSweepVideo.style.opacity = "0";
+
+        }
+
+
+        /*
+         * Particules du haut arrêtées.
+         */
+
+        stopTopParticles();
+
+
+        /*
+         * Vidéo de fond :
+         * arrêt exactement à 5 secondes.
+         */
+
+        stopBackgroundAtFiveSeconds();
+
+    }
+
+
+    function mainVideoPaused() {
+
+        /*
+         * Retour au zoom normal.
+         */
+
+        if (videoCardMain) {
+
+            videoCardMain.classList.remove(
+                "video-playing"
+            );
+
+        }
+
+
+        /*
+         * Sweep visible.
+         */
+
+        if (edgeSweepVideo) {
+
+            edgeSweepVideo.style.opacity = "1";
+
+        }
+
+
+        /*
+         * Particules du haut :
+         * reprise de leur cycle complet.
+         */
+
+        startTopParticles();
+
+
+        /*
+         * Vidéo de fond :
+         * reprise normale.
+         */
+
+        resumeBackgroundVideo();
+
+    }
+
+
+    /* =========================================================
+       8 — ÉVÉNEMENTS VIDÉO PRINCIPALE
+       ========================================================= */
+
+    mainVideo.addEventListener(
+        "play",
+        mainVideoPlaying
+    );
+
+
+    mainVideo.addEventListener(
+        "pause",
+        mainVideoPaused
+    );
+
+
+    mainVideo.addEventListener(
+        "ended",
+        mainVideoPaused
+    );
+
+
+    /* =========================================================
+       9 — ÉVÉNEMENTS VIDÉO DE FOND
+       ========================================================= */
+
+    if (backgroundVideo) {
+
+        backgroundVideo.addEventListener(
+            "timeupdate",
+            handleBackgroundTimeUpdate
+        );
+
+
+        backgroundVideo.addEventListener(
+            "ended",
+            handleBackgroundEnded
+        );
+
+    }
+
+
+    /* =========================================================
+       10 — SCROLL
+
+       Un seul listener de scroll pour les deux systèmes
+       de lazy playback.
+       ========================================================= */
+
+    function handleScroll() {
+
+        updateReelsPlayback();
+
+        updateBottomParticlesPlayback();
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        handleScroll,
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * Si le viewport change de taille :
+     * - rotation du téléphone
+     * - redimensionnement de la fenêtre
+     * - changement de responsive
+
+     * on recalcule immédiatement la visibilité.
+     */
+
+    window.addEventListener(
+        "resize",
+        handleScroll,
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "orientationchange",
+        handleScroll,
+        {
+            passive: true
+        }
+    );
+
+
+    /* =========================================================
+       11 — ÉTAT INITIAL
+       ========================================================= */
+
+    /*
+     * Les reels commencent en pause.
+     * updateReelsPlayback() détermine ensuite
+     * lesquels sont réellement visibles.
+     */
+
+    reelVideos.forEach(video => {
+
+        video.pause();
+
+    });
+
+
+    /*
+     * Les particules du bas commencent en pause.
+     * updateBottomParticlesPlayback() détermine ensuite
+     * si leur zone est visible.
+     */
+
+    stopBottomParticles();
+
+
+    /*
+     * Les particules du haut sont visibles uniquement
+     * si la vidéo principale est actuellement en pause.
+     */
+
+    if (mainVideo.paused) {
+
+        mainVideoPaused();
+
+    } else {
+
+        mainVideoPlaying();
+
+    }
+
+
+    /*
+     * État initial du lazy playback.
+     */
+
+    updateReelsPlayback();
+
+    updateBottomParticlesPlayback();
+
+});
 
